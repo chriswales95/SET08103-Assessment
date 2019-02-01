@@ -6,6 +6,21 @@ public class App
 {
     public static void main(String[] args)
     {
+        App a = new App();
+        a.connect();
+        a.disconnect();
+    }
+
+    /**
+     * Connection to MySQL database.
+     */
+    private Connection con = null;
+
+    /**
+     * Connect to the MySQL database.
+     */
+    public void connect()
+    {
         try
         {
             // Load Database driver
@@ -13,13 +28,11 @@ public class App
         }
         catch (ClassNotFoundException e)
         {
-            System.out.println(e.toString());
+            System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
 
-        // Connection to the database
-        Connection con = null;
-        int retries = 100;
+        int retries = 10;
         for (int i = 0; i < retries; ++i)
         {
             System.out.println("Connecting to database...");
@@ -28,11 +41,9 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://0.0.0.0:3306?useSSL=false", "root", "pass");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "pass");
                 System.out.println("Successfully connected");
-                // Wait a bit
-                Thread.sleep(10000);
-                // Exit for loop
+
                 break;
             }
             catch (SQLException sqle)
@@ -45,7 +56,13 @@ public class App
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
+    }
 
+    /**
+     * Disconnect from the MySQL database.
+     */
+    public void disconnect()
+    {
         if (con != null)
         {
             try
