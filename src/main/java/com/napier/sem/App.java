@@ -6,8 +6,6 @@ import java.util.Scanner;
 
 /**
  * Purpose of class: Main Application
- * Last Modified by: Christopher Wales
- * Date last modified: 3/02/2019
  */
 public class App {
 
@@ -85,7 +83,7 @@ public class App {
             switch (reportNumber) {
 
                 case 1:
-                    System.out.printf("%-5s  %-30s  %-30.25s  %-30s  %-20s  %-20s", "CODE", "NAME", "CONTINENT", "REGION", "POPULATION", "CAPITAL");
+                    System.out.printf("%-5s  %-40s  %-30.25s  %-30s  %-20s  %-20s", "CODE", "NAME", "CONTINENT", "REGION", "POPULATION", "CAPITAL");
                     System.out.print("\n");
                     for (Report r : db.getReport(reportNumber)) {
                         CountryReport x = (CountryReport) r;

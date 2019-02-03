@@ -12,13 +12,13 @@ public class CountryReport extends Report {
     private String _capital;
     private int _population;
 
-    public CountryReport(String _code, String _name, String _continent, String _region, String _capital, int _population) {
+    public CountryReport(String _code, String _name, String _continent, String _region, int _population, String _capital) {
         this._code = _code;
         this._name = _name;
         this._continent = _continent;
         this._region = _region;
-        this._capital = _capital;
         this._population = _population;
+        this._capital = _capital;
     }
 
     public String get_code() {

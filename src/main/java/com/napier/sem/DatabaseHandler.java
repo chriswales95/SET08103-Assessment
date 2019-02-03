@@ -76,15 +76,16 @@ public class DatabaseHandler {
 
                 throw new Exception("Not a valid report number");
             }
+
             switch (reportNumber) {
 
                 case 1:
                     strSelect =
-                            "select code, name, continent, region, population, capital from country order by population DESC;";
+                            "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC;";
                     rset = stmt.executeQuery(strSelect);
                     while (rset.next()) {
                         CountryReport r = new CountryReport(
-                                rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(4),rset.getInt(5));
+                                rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5),rset.getString(6));
                         results.add(r);
                     }
                     return results;
