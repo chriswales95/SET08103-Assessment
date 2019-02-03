@@ -1,37 +1,36 @@
 package com.napier.sem;
 
-import java.sql.*;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 
 /**
  * Purpose of class: Main Application
- * Last Modified by:
- * Date last modified:
+ * Last Modified by: Christopher Wales
+ * Date last modified: 3/02/2019
  */
-public class App
-{
-    public static void main(String[] args)
-    {
-        App a = new App();
-        a.connect();
-        a.getUserChoice();
-        a.disconnect();
+public class App {
 
+    private static DatabaseHandler db = new DatabaseHandler();
+
+    public static void main(String[] args) {
+        App app = new App();
+
+        db.connect();
+        int choice = app.getUserChoice();
+        app.generateReport(choice);
+        db.disconnect();
     }
 
     /**
      * Display report options and get input
      */
-    public void getUserChoice(){
+    public int getUserChoice() {
 
         try {
-
             System.out.println("World Population: \n");
-            System.out.println("Select a report to view:");
-
-            System.out.println("1. All the countries in the world organised by largest population to smallest");
+            System.out.println("Select a report to view:"); // select SUM(population) from country;
+            System.out.println("1. All the countries in the world organised by largest population to smallest");  // select name, population from country order by population DESC;
             System.out.println("2. All the countries in a continent organised by largest population to smallest");
             System.out.println("3. All the countries in a region organised by largest population to smallest");
             System.out.println("4. The top N populated countries in the world");
@@ -66,79 +65,37 @@ public class App
             System.out.println("33. The number of people who speak Spanish");
             System.out.println("34. The number of people who speak Arabic");
 
-            System.out.println("\nEnter number: ");
-
+            System.out.println("\nEnter number: "); // Prompt user for input
             Scanner sc = new Scanner(System.in);
-            int choice = sc.nextInt();
-        } catch (NoSuchElementException ex){
-            System.out.println("No input captured");
+            return sc.nextInt(); // Read input in from console
+        } catch (NoSuchElementException ex) {
+            System.out.println("No input or incorrect input captured");
             System.out.println(ex.getMessage());
         }
-    }
-    /**
-     * Connection to MySQL database.
-     */
-    private Connection con = null;
-
-    /**
-     * Connect to the MySQL database.
-     */
-    public void connect()
-    {
-        try
-        {
-            // Load Database driver
-            Class.forName("com.mysql.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e)
-        {
-            System.out.println("Could not load SQL driver");
-            System.exit(-1);
-        }
-
-        int retries = 3;
-        for (int i = 0; i < retries; ++i)
-        {
-            System.out.println("Connecting to database.......");
-            try
-            {
-                // Wait a bit for db to start
-                Thread.sleep(30000);
-                // Connect to database using root and password
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "pass");
-                System.out.println("Successfully connected!\n");
-                break;
-            }
-            catch (SQLException sqle)
-            {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
-                System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
-            {
-                System.out.println("Thread interrupted");
-            }
-        }
+        return 0;
     }
 
-    /**
-     * Disconnect from the MySQL database.
-     */
-    public void disconnect()
-    {
-        if (con != null)
-        {
-            try
-            {
-                // Close connection
-                con.close();
-                System.out.println("--------------------------------------");
-                System.out.println("Connection to database closed");
+    public void generateReport(int reportNumber) {
+
+        try {
+            if (reportNumber > 34 || reportNumber <= 0) {
+                throw new Exception("Choose a report between 1 and 34");
             }
-            catch (Exception e)
-            {
-                System.out.println("Error closing connection to database");
+
+            switch (reportNumber) {
+
+                case 1:
+                    System.out.printf("%-5s  %-30s  %-30.25s  %-30s  %-20s  %-20s", "CODE", "NAME", "CONTINENT", "REGION", "POPULATION", "CAPITAL");
+                    System.out.print("\n");
+                    for (Report r : db.getReport(reportNumber)) {
+                        CountryReport x = (CountryReport) r;
+                        System.out.printf("%-5s  %-40.35s  %-30.25s  %-30s  %-20d  %-20s", x.get_code(), x.get_name(), x.get_continent(), x.get_region(), x.get_population(), x.get_capital());
+                        System.out.print("\n");
+                    }
+                    break;
             }
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
         }
     }
 }
