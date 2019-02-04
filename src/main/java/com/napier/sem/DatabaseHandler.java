@@ -1,17 +1,40 @@
 package com.napier.sem;
 
+
 import java.sql.*;
 import java.util.ArrayList;
 
 /**
- * Purpose of class: Database Handler class to deal with the database
+ * Purpose of class: Database Handler class of type Singleton to deal with the database connection and reports
  */
 public class DatabaseHandler {
 
     /**
      * Connection to MySQL database.
      */
-    private Connection con = null;
+    private static Connection con = null;
+
+    /**
+     * Instance of DatabaseHandler
+     */
+    private static DatabaseHandler _instance = null;
+
+    /**
+     * Method that instantiates _instance if null
+     * @return Instance of DatabaseHandler
+     */
+    public static DatabaseHandler Instance(){
+
+        if (_instance == null)
+            _instance = new DatabaseHandler();
+
+        return _instance;
+    }
+
+    /**
+     * Disabled constructor
+     */
+    private DatabaseHandler(){}
 
     /**
      * Connect to the MySQL database.
@@ -61,6 +84,12 @@ public class DatabaseHandler {
         }
     }
 
+    /**
+     * ArrayList which returns report based on report number
+     *
+     * @param reportNumber
+     * @return results
+     */
     public ArrayList<Report> getReport(int reportNumber) {
 
         ArrayList<Report> results = new ArrayList<>();

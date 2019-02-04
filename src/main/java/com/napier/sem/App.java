@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 public class App {
 
-    private static DatabaseHandler db = new DatabaseHandler();
+    private static DatabaseHandler db = DatabaseHandler.Instance();
 
     public static void main(String[] args) {
         App app = new App();
