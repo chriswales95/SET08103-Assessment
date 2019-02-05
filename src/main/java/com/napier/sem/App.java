@@ -3,7 +3,6 @@ package com.napier.sem;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-
 /**
  * Purpose of class: Main Application
  */
@@ -27,8 +26,8 @@ public class App {
 
         try {
             System.out.println("World Population: \n");
-            System.out.println("Select a report to view:"); // select SUM(population) from country;
-            System.out.println("1. All the countries in the world organised by largest population to smallest");  // select name, population from country order by population DESC;
+            System.out.println("Select a report to view:");
+            System.out.println("1. All the countries in the world organised by largest population to smallest");
             System.out.println("2. All the countries in a continent organised by largest population to smallest");
             System.out.println("3. All the countries in a region organised by largest population to smallest");
             System.out.println("4. The top N populated countries in the world");
@@ -74,6 +73,10 @@ public class App {
         return 0;
     }
 
+    /**
+     * Generate the necessary report depending on reportNumber
+     * @param reportNumber
+     */
     public void generateReport(int reportNumber) {
 
         try {
@@ -84,11 +87,11 @@ public class App {
             switch (reportNumber) {
 
                 case 1:
-                    System.out.printf("%-5s  %-40s  %-30.25s  %-30s  %-20s  %-20s", "CODE", "NAME", "CONTINENT", "REGION", "POPULATION", "CAPITAL");
+                    CountryReport.printReportHeader();
                     System.out.print("\n");
-                    for (Report r : db.getReport(reportNumber)) {
-                        CountryReport x = (CountryReport) r;
-                        System.out.printf("%-5s  %-40.35s  %-30.25s  %-30s  %-20d  %-20s", x.get_code(), x.get_name(), x.get_continent(), x.get_region(), x.get_population(), x.get_capital());
+                    for (Report report : db.getReport(reportNumber)) {
+                        CountryReport countryReport = (CountryReport) report;
+                        System.out.printf(CountryReport.getReportFormat(), countryReport.get_code(), countryReport.get_name(), countryReport.get_continent(), countryReport.get_region(), countryReport.get_population(), countryReport.get_capital());
                         System.out.print("\n");
                     }
                     break;

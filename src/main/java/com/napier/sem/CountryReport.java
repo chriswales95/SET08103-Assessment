@@ -6,19 +6,25 @@ package com.napier.sem;
 public class CountryReport extends Report {
 
     private String _code;
-    private String _name;
     private String _continent;
     private String _region;
     private String _capital;
-    private int _population;
 
-    public CountryReport(String _code, String _name, String _continent, String _region, int _population, String _capital) {
-        this._code = _code;
-        this._name = _name;
-        this._continent = _continent;
-        this._region = _region;
-        this._population = _population;
-        this._capital = _capital;
+    public CountryReport(String code, String name, String continent, String region, int population, String capital) {
+        this._code = code;
+        this.set_name(name);
+        this._continent = continent;
+        this._region = region;
+        this.set_population(population);
+        this._capital = capital;
+    }
+
+    public static String getReportFormat() {
+        return "%-5s  %-40s  %-30.25s  %-30s  %-20s  %-20s";
+    }
+
+    public static void printReportHeader(){
+        System.out.printf(CountryReport.getReportFormat(), "CODE", "NAME", "CONTINENT", "REGION", "POPULATION", "CAPITAL");
     }
 
     public String get_code() {
@@ -27,14 +33,6 @@ public class CountryReport extends Report {
 
     public void set_code(String _code) {
         this._code = _code;
-    }
-
-    public String get_name() {
-        return _name;
-    }
-
-    public void set_name(String _name) {
-        this._name = _name;
     }
 
     public String get_continent() {
@@ -61,11 +59,4 @@ public class CountryReport extends Report {
         this._capital = _capital;
     }
 
-    public int get_population() {
-        return _population;
-    }
-
-    public void set_population(int _population) {
-        this._population = _population;
-    }
 }
