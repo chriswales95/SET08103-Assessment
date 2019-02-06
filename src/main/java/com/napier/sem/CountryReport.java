@@ -19,12 +19,21 @@ public class CountryReport extends Report {
         this._capital = capital;
     }
 
+    public CountryReport(){}
+
+    @Override
+    Report.ReportType getReportType() {
+        return ReportType.CountryReport;
+    }
+
     public static String getReportFormat() {
         return "%-5s  %-40s  %-30.25s  %-30s  %-20s  %-20s";
     }
 
     public static void printReportHeader(){
+        System.out.println("\n");
         System.out.printf(CountryReport.getReportFormat(), "CODE", "NAME", "CONTINENT", "REGION", "POPULATION", "CAPITAL");
+        System.out.println("\n");
     }
 
     public String get_code() {

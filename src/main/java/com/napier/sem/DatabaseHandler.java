@@ -3,6 +3,7 @@ package com.napier.sem;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Purpose of class: Database Handler class of type Singleton to deal with the database connection and reports
@@ -21,9 +22,10 @@ public class DatabaseHandler {
 
     /**
      * Method that instantiates _instance if null
+     *
      * @return Instance of DatabaseHandler
      */
-    public static DatabaseHandler Instance(){
+    public static DatabaseHandler Instance() {
 
         if (_instance == null)
             _instance = new DatabaseHandler();
@@ -34,7 +36,8 @@ public class DatabaseHandler {
     /**
      * Disabled constructor
      */
-    private DatabaseHandler(){}
+    private DatabaseHandler() {
+    }
 
     /**
      * Connect to the MySQL database.
@@ -87,7 +90,7 @@ public class DatabaseHandler {
     /**
      * ArrayList which returns report based on report number
      *
-     * @param reportNumber
+     * @param reportNumber the report that needs to be generated
      * @return results
      */
     public ArrayList<Report> getReport(int reportNumber) {
@@ -101,7 +104,7 @@ public class DatabaseHandler {
 
             Statement stmt = con.createStatement();
 
-            if (reportNumber > 35 || reportNumber <= 0){
+            if (reportNumber > 35 || reportNumber <= 0) {
 
                 throw new Exception("Not a valid report number");
             }
@@ -109,19 +112,47 @@ public class DatabaseHandler {
             switch (reportNumber) {
 
                 case 1:
+
                     strSelect =
                             "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC;";
                     rset = stmt.executeQuery(strSelect);
+
                     while (rset.next()) {
                         CountryReport r = new CountryReport(
-                                rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5),rset.getString(6));
+                                rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
                         results.add(r);
                     }
-                    return results;
+                    break;
+
+
+                case 2:
+
+                    Scanner scanner = new Scanner(System.in);
+                    System.out.println("\nEnter Continent: "); // Prompt user for input
+                    String continent = scanner.next();
+
+                    strSelect =
+                            "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where continent = ? order by population DESC;";
+
+                    PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+                    preparedStatement.setString(1, continent);
+
+                    rset = preparedStatement.executeQuery();
+
+                    while (rset.next()) {
+                        CountryReport r = new CountryReport(
+                                rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
+                        results.add(r);
+                    }
+                    break;
+
+                default:
+                    System.out.println("Not implemented yet");
+
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
         return results;

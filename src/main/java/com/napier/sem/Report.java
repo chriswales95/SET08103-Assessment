@@ -5,8 +5,13 @@ package com.napier.sem;
  */
 abstract public class Report {
 
+    abstract ReportType getReportType();
+
     private String _name;
     private int _population;
+    public enum ReportType{CountryReport, CityReport}
+
+
 
     public String get_name() {
         return _name;
@@ -23,4 +28,5 @@ abstract public class Report {
     public void set_population(int _population) {
         this._population = _population;
     }
+
 }
