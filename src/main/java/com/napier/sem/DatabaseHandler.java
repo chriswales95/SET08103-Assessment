@@ -129,8 +129,7 @@ public class DatabaseHandler {
 
                     Scanner scanner = new Scanner(System.in);
                     System.out.println("\nEnter Continent: "); // Prompt user for input
-                    String continent = scanner.next();
-
+                    String continent = scanner.nextLine();
                     strSelect =
                             "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where continent = ? order by population DESC;";
 
