@@ -96,19 +96,17 @@ public class App {
      */
     public void generateReport(int reportNumber) {
 
-        ArrayList<Report> reportResults = db.getReport(reportNumber);
-        if (!reportResults.isEmpty()) {
-            if (reportResults.get(0) instanceof CountryReport)
-                CountryReport.printReportHeader();
+        Report report = db.getReport(reportNumber);
+        if (report instanceof CountryReport) {
+            CountryReport.printReportHeader();
 
-        }
-
-        for (Report report : reportResults) {
-            if (reportResults.get(0) instanceof CountryReport) {
-                CountryReport countryReport = (CountryReport) report;
-                System.out.printf(CountryReport.getReportFormat(), countryReport.get_code(), countryReport.get_name(), countryReport.get_continent(), countryReport.get_region(), countryReport.get_population(), countryReport.get_capital());
+            for (CountryReport.CountryReportItem item : ((CountryReport) report).get_reportsItems()) {
+                System.out.printf(
+                        CountryReport.getReportFormat(), item.get_code(), item.get_name(), item.get_continent(), item.get_region(), item.get_population(), item.get_capital());
                 System.out.print("\n");
             }
         }
     }
 }
+
+

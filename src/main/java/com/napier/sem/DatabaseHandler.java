@@ -2,7 +2,6 @@ package com.napier.sem;
 
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -93,15 +92,12 @@ public class DatabaseHandler {
      * @param reportNumber the report that needs to be generated
      * @return results
      */
-    public ArrayList<Report> getReport(int reportNumber) {
-
-        ArrayList<Report> results = new ArrayList<>();
+    public Report getReport(int reportNumber) {
 
         String strSelect = "";
         ResultSet rset = null;
 
         try {
-
             Statement stmt = con.createStatement();
 
             if (reportNumber > 35 || reportNumber <= 0) {
@@ -109,23 +105,22 @@ public class DatabaseHandler {
                 throw new Exception("Not a valid report number");
             }
 
-            switch (reportNumber) {
-
-                case 1:
+                if (reportNumber == 1) {
 
                     strSelect =
                             "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC;";
                     rset = stmt.executeQuery(strSelect);
 
+                    CountryReport report = new CountryReport();
                     while (rset.next()) {
-                        CountryReport r = new CountryReport(
-                                rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
-                        results.add(r);
+                        CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
+                        report.addItemToReport(item);
                     }
-                    break;
+                    return report;
+                }
 
 
-                case 2:
+                if (reportNumber == 2) {
 
                     Scanner scanner = new Scanner(System.in);
                     System.out.println("\nEnter Continent: "); // Prompt user for input
@@ -137,23 +132,21 @@ public class DatabaseHandler {
                     preparedStatement.setString(1, continent);
 
                     rset = preparedStatement.executeQuery();
-
+                    CountryReport report = new CountryReport();
+                    report = new CountryReport();
                     while (rset.next()) {
-                        CountryReport r = new CountryReport(
-                                rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
-                        results.add(r);
+                        CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
+                        report.addItemToReport(item);
                     }
-                    break;
-
-                default:
+                    return report;
+                } else {
                     System.out.println("Not implemented yet");
-
-            }
-        } catch (SQLException ex) {
+                }
+            } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        return results;
+        return null;
     }
 }
