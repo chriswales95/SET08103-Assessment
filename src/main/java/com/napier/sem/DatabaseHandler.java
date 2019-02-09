@@ -1,6 +1,5 @@
 package com.napier.sem;
 
-
 import java.sql.*;
 import java.util.Scanner;
 
@@ -51,12 +50,12 @@ public class DatabaseHandler {
             System.exit(-1);
         }
 
-        int retries = 3;
+        int retries = 6;
         for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database.......");
             try {
                 // Wait a bit for db to start
-                Thread.sleep(30000);
+                Thread.sleep(5000);
                 // Connect to database using root and password
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "pass");
                 System.out.println("Successfully connected!\n");
