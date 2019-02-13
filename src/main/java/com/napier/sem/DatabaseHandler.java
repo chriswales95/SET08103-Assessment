@@ -99,7 +99,7 @@ public class DatabaseHandler {
         try {
             Statement stmt = con.createStatement();
 
-            if (reportNumber > 35 || reportNumber <= 0) {
+            if (reportNumber > 36 || reportNumber <= 0) {
 
                 throw new Exception("Not a valid report number");
             }

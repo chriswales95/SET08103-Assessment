@@ -60,16 +60,17 @@ public class App {
         System.out.println("23. The population of people, people living in cities, and people not living in cities in each continent");
         System.out.println("24. The population of people, people living in cities, and people not living in cities in each region");
         System.out.println("25. The population of people, people living in cities, and people not living in cities in each country");
-        System.out.println("26. The population of a continent");
-        System.out.println("27. The population of a region");
-        System.out.println("28. The population of a country");
-        System.out.println("29. The population of a district");
-        System.out.println("30. The population of a city");
-        System.out.println("31. The number of people who speak Chinese");
-        System.out.println("32. The number of people who speak English");
-        System.out.println("33. The number of people who speak Hindi");
-        System.out.println("34. The number of people who speak Spanish");
-        System.out.println("35. The number of people who speak Arabic");
+        System.out.println("26. The population of the world");
+        System.out.println("27. The population of a continent");
+        System.out.println("28. The population of a region");
+        System.out.println("29. The population of a country");
+        System.out.println("30. The population of a district");
+        System.out.println("31. The population of a city");
+        System.out.println("32. The number of people who speak Chinese");
+        System.out.println("33. The number of people who speak English");
+        System.out.println("34. The number of people who speak Hindi");
+        System.out.println("35. The number of people who speak Spanish");
+        System.out.println("36. The number of people who speak Arabic");
         System.out.println("\nEnter 0 to exit\n");
     }
 
