@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As an *HR advisor* I want *to produce a report on all the population of people living in cities and the population of people not livng in cities in each continent* so that *I can see the population of people living in cities and people not living in cities in each continent.*
+As an *employee* I want *to produce a report on all the population of people living in cities and the population of people not livng in cities in each continent* so that *I can see the population of people living in cities and people not living in cities in each continent.*
 
 ### Scope
 
@@ -20,7 +20,7 @@ Database contains current country populations.
 
 ### Success End Condition
 
-A report is available for HR to view population and cities in a continent.
+A report is available for employee to view population and cities in a continent.
 
 ### Failed End Condition
 
@@ -28,7 +28,7 @@ No report is produced.
 
 ### Primary Actor
 
-HR Advisor.
+Employee
 
 ### Trigger
 
@@ -37,8 +37,8 @@ A request for finance information is sent to HR.
 ## MAIN SUCCESS SCENARIO
 
 1. Information for populations, ordered by population, ascending, is requested.
-2. HR advisor creates a report ordering all populations in a continent by population and city status.
-3. HR advisor provides report requested.
+2. Database creates a report ordering all populations in a continent by population and city status.
+3. Employee provides report requested.
 
 ## EXTENSIONS
 

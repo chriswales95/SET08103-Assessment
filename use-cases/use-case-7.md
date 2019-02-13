@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As an *HR advisor* I want *to produce a report on all the cities in the world organised by largest population to smallest* so that *I can easily list locations.*
+As an *employee* I want *to produce a report on all the cities in the world organised by largest population to smallest* so that *I can easily list locations.*
 
 ### Scope
 
@@ -28,17 +28,17 @@ No report is produced.
 
 ### Primary Actor
 
-HR Advisor.
+employee
 
 ### Trigger
 
-A request for finance information is sent to HR.
+A request for finance information is sent to employee.
 
 ## MAIN SUCCESS SCENARIO
 
 1. Information for cities, ordered by population, ascending, is requested.
-2. HR advisor creates a report ordering all cities by population.
-3. HR advisor provides report requested.
+2. Database creates a report ordering all cities by population.
+3. Employee provides report requested.
 
 ## EXTENSIONS
 

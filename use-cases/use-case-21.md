@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As an *HR advisor* I want *to produce a report on the top N populated capital cities in a continent where N is provided by the user* so that *I can list the top N populated capital cities in a continent*
+As an *employee* I want *to produce a report on the top N populated capital cities in a continent where N is provided by the user* so that *I can list the top N populated capital cities in a continent*
 
 ### Scope
 
@@ -20,7 +20,7 @@ Database contains current country populations.
 
 ### Success End Condition
 
-A report is available for HR to view a list of the top N populated capital cities in a continent.
+A report is available for employee to view a list of the top N populated capital cities in a continent.
 
 ### Failed End Condition
 
@@ -28,7 +28,7 @@ No report is produced.
 
 ### Primary Actor
 
-HR Advisor.
+Employee
 
 ### Trigger
 
@@ -37,8 +37,8 @@ A request for finance information is sent to HR.
 ## MAIN SUCCESS SCENARIO
 
 1. Information for capital cities, ordered by population, ascending, is requested.
-2. HR advisor creates a report ordering N capital cities in a continent by population.
-3. HR advisor provides report requested.
+2. Database creates a report ordering N capital cities in a continent by population.
+3. Employee provides report requested.
 
 ## EXTENSIONS
 

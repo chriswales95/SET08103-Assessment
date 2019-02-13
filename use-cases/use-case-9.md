@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As an *HR advisor* I want *to produce a report on all the cities in a region organised by largest population to smallest* so that *I can easily list locations.*
+As an *employee* I want *to produce a report on all the cities in a region organised by largest population to smallest* so that *I can easily list locations.*
 
 ### Scope
 
@@ -20,7 +20,7 @@ Database contains current country populations.
 
 ### Success End Condition
 
-A report is available for HR to view countries.
+A report is available for employee to view cities.
 
 ### Failed End Condition
 
@@ -28,21 +28,21 @@ No report is produced.
 
 ### Primary Actor
 
-HR Advisor.
+employee
 
 ### Trigger
 
-A request for finance information is sent to HR.
+A request for finance information is sent to employee.
 
 ## MAIN SUCCESS SCENARIO
 
 1. Information for cities, ordered by population, ascending, is requested from a region.
-2. HR advisor creates a report ordering all countries by population from a region.
-3. HR advisor provides report requested.
+2. Database creates a report ordering all countries by population from a region.
+3. Employee provides report requested.
 
 ## EXTENSIONS
 
-None..
+None.
 
 ## SUB-VARIATIONS
 
