@@ -42,7 +42,7 @@ A request for finance information is sent to HR.
 
 ## EXTENSIONS
 
-None.
+None..
 
 ## SUB-VARIATIONS
 
