@@ -1,4 +1,4 @@
-# USE CASE: 10 Produce a Report on All the cities in a district organised by largest population to smallest.
+# USE CASE: 10 to produce a report on the top N populated cities in a continent where N is provided by the user.
 
 ## CHARACTERISTIC INFORMATION
 

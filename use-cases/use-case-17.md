@@ -1,10 +1,10 @@
-# USE CASE: 10 Produce a Report on All the cities in a district organised by largest population to smallest.
+# USE CASE: 10 produce a report on all the capital cities in the world organised by largest population to smallest.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As an *employee* I want *produce a report on all the capital cities in the world organised by largest population to smallest* so that *I can share this on the company facebook.*
+As an *employee* I want to *produce a report on all the capital cities in the world organised by largest population to smallest* so that *I can share this on the company facebook.*
 
 ### Scope
 

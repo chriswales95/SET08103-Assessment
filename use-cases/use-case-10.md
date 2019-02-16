@@ -1,4 +1,4 @@
-# USE CASE: 10 Produce a Report on All the cities in a district organised by largest population to smallest.
+# USE CASE: 10 Produce a to produce a report on all the cities in a country organised by largest population to smallest.
 
 ## CHARACTERISTIC INFORMATION
 
