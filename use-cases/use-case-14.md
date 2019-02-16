@@ -1,4 +1,4 @@
-# USE CASE: 10 produce a report on the top N populated cities in a region where N is provided by the user.
+# USE CASE: 14 produce a report on the top N populated cities in a region where N is provided by the user.
 
 ## CHARACTERISTIC INFORMATION
 

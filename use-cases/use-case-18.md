@@ -1,4 +1,4 @@
-# USE CASE: 10 produce a report on all the capital cities in a continent organised by largest population to smallest.
+# USE CASE: 18 produce a report on all the capital cities in a continent organised by largest population to smallest.
 
 ## CHARACTERISTIC INFORMATION
 
