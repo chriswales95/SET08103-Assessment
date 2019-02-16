@@ -1,0 +1,59 @@
+@startuml
+
+actor emp as "Employee"
+
+rectangle Database
+
+rectangle "Reports" {
+
+usecase UC1 as "all the countries in the world organised by largest population to smallest"
+usecase UC2 as "all the countries in a continent organised by largest population to smallest"
+usecase UC3 as "all the countries in a region organised by largest population to smallest"
+usecase UC4 as "the top N populated countries in the world"
+usecase UC5 as "the top N populated countries in a continent "
+usecase UC6 as "the top N populated countries in a region"
+usecase UC7 as "all the cities in the world organised by largest population to smallest"
+usecase UC8 as "all the cities in a continent organised by largest population to smallest"
+usecase UC9 as "all the cities in a region organised by largest population to smallest"
+usecase UC10 as "all the cities in a country organised by largest population to smallest"
+usecase UC11 as "all the cities in a district organised by largest population to smallest"
+usecase UC12 as "top N populated cities in the world"
+usecase UC13 as "top N populated cities in a continent"
+usecase UC14 as "top N populated cities in a region"
+usecase UC15 as "top N populated cities in a country"
+usecase UC16 as "top N populated cities in a district"
+usecase UC17 as "capital cities in the world organised by largest population to smallest"
+usecase UC18 as "capital cities in a continent organised by largest population to smallest"
+usecase UC19 as "capital cities in a region organised by largest to smallest"
+usecase UC20 as "top N populated capital cities in the world"
+usecase UC21 as "top N populated capital cities in a continent"
+usecase UC22 as "top N populated capital cities in a region"
+usecase UC23 as "population of people, people living in cities, and people not living in cities in each continent"
+usecase UC24 as "population of people, people living in cities, and people not living in cities in each region"
+usecase UC25 as "population of people, people living in cities, and people not living in cities in each country."
+usecase UC26 as "population of the world"
+usecase UC27 as "population of a continent"
+usecase UC28 as "population of a region"
+usecase UC29 as "population of a country"
+usecase UC30 as "population of a district"
+usecase UC31 as "population of a city"
+usecase UC32 as "number of people who speak Chinese"
+usecase UC33 as "number of people who speak English"
+usecase UC34 as "number of people who speak Hind"
+usecase UC35 as "number of people who speak Spanish"
+usecase UC36 as "number of people who speak Arabic"
+
+
+emp -- Database
+
+
+
+
+
+
+
+
+
+}
+
+@enduml
