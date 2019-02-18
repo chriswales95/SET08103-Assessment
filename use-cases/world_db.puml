@@ -6,53 +6,86 @@ rectangle Database
 
 rectangle "Reports" {
 
-usecase UC1 as "all the countries in the world organised by largest population to smallest"
-usecase UC2 as "all the countries in a continent organised by largest population to smallest"
-usecase UC3 as "all the countries in a region organised by largest population to smallest"
-usecase UC4 as "the top N populated countries in the world"
-usecase UC5 as "the top N populated countries in a continent "
-usecase UC6 as "the top N populated countries in a region"
-usecase UC7 as "all the cities in the world organised by largest population to smallest"
-usecase UC8 as "all the cities in a continent organised by largest population to smallest"
-usecase UC9 as "all the cities in a region organised by largest population to smallest"
-usecase UC10 as "all the cities in a country organised by largest population to smallest"
-usecase UC11 as "all the cities in a district organised by largest population to smallest"
-usecase UC12 as "top N populated cities in the world"
-usecase UC13 as "top N populated cities in a continent"
-usecase UC14 as "top N populated cities in a region"
-usecase UC15 as "top N populated cities in a country"
-usecase UC16 as "top N populated cities in a district"
-usecase UC17 as "capital cities in the world organised by largest population to smallest"
-usecase UC18 as "capital cities in a continent organised by largest population to smallest"
-usecase UC19 as "capital cities in a region organised by largest to smallest"
-usecase UC20 as "top N populated capital cities in the world"
-usecase UC21 as "top N populated capital cities in a continent"
-usecase UC22 as "top N populated capital cities in a region"
-usecase UC23 as "population of people, people living in cities, and people not living in cities in each continent"
-usecase UC24 as "population of people, people living in cities, and people not living in cities in each region"
-usecase UC25 as "population of people, people living in cities, and people not living in cities in each country."
-usecase UC26 as "population of the world"
-usecase UC27 as "population of a continent"
-usecase UC28 as "population of a region"
-usecase UC29 as "population of a country"
-usecase UC30 as "population of a district"
-usecase UC31 as "population of a city"
-usecase UC32 as "number of people who speak Chinese"
-usecase UC33 as "number of people who speak English"
-usecase UC34 as "number of people who speak Hind"
-usecase UC35 as "number of people who speak Spanish"
-usecase UC36 as "number of people who speak Arabic"
+usecase UC1 as "Usecase 1"
+usecase UC2 as "Usecase 2"
+usecase UC3 as "Usecase 3"
+usecase UC4 as "Usecase 4"
+usecase UC5 as "Usecase 5 "
+usecase UC6 as "Usecase 6"
+usecase UC7 as "Usecase 7"
+usecase UC8 as "Usecase 8"
+usecase UC9 as "Usecase 9"
+usecase UC10 as "Usecase 10"
+usecase UC11 as "usecase 11"
+usecase UC12 as "Usecase 12"
+usecase UC13 as "Usecase 13"
+usecase UC14 as "Usecase 14"
+usecase UC15 as "Usecase 15"
+usecase UC16 as "Usecase 16"
+usecase UC17 as "Usecase 17"
+usecase UC18 as "Usecase 18"
+usecase UC19 as "Usecase 19"
+usecase UC20 as "Usecase 20"
+usecase UC21 as "Usecase 21"
+usecase UC22 as "Usecase 22"
+usecase UC23 as "Usecase 23"
+usecase UC24 as "Usecase 24"
+usecase UC25 as "Usecase 25"
+usecase UC26 as "Usecase 26"
+usecase UC27 as "Usecase 27"
+usecase UC28 as "Usecase 28"
+usecase UC29 as "Usecase 29"
+usecase UC30 as "Usecase 30"
+usecase UC31 as "Usecase 31"
+usecase UC32 as "Usecase 32"
+usecase UC33 as "Usecase 33"
+usecase UC34 as "Usecase 34"
+usecase UC35 as "Usecase 35"
+usecase UC36 as "Usecase 36"
 
+emp --> Database
+Database -- UC1
+Database -- UC2
+Database -- UC3
+Database -- UC4
+Database -- UC5
+Database -- UC6
+UC6--UC7
+UC7--UC8
+UC8--UC9
+UC9--UC10
+UC5--UC11
+UC11--UC12
+UC12--UC13
+UC13--UC14
+UC4--UC15
+UC15--UC16
+UC16--UC17
+UC17--UC18
+UC3--UC19
+UC19--UC20
+UC20--UC21
+UC21--UC22
+UC2--UC23
+UC23--UC24
+UC24--UC25
+UC25--UC26
+UC1--UC27
+UC27--UC28
+UC28--UC29
+UC29--UC30
+Database-UC31
+UC31--UC32
+UC32--UC33
+UC33--UC34
+UC34--UC35
+UC35--UC36
 
-emp -- Database
-
-
-
-
-
-
-
-
+note right of emp
+user connects to database
+and queries 1 of 26
+reports (use-cases)
+end note
 
 }
 
