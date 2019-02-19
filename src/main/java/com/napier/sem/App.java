@@ -1,6 +1,5 @@
 package com.napier.sem;
 
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -9,16 +8,22 @@ import java.util.Scanner;
  */
 public class App {
 
-    private static DatabaseHandler db = DatabaseHandler.Instance();
+    private static DatabaseHandler db = DatabaseHandler.Instance(); // Instance of database
 
+    /**
+     * Main method
+     * @param args args passed into main
+     */
     public static void main(String[] args) {
 
         boolean loop = true;
 
+        // Connect to database
         App app = new App();
         db.connect();
         app.printReportOptions();
 
+        // Loop until user enters 0 to exit
         while (loop) {
             int choice = app.getUserChoice();
             if (choice == 0) {
@@ -27,6 +32,7 @@ public class App {
                 app.generateReport(choice);
             }
         }
+        // Disconnect from database
         db.disconnect();
     }
 

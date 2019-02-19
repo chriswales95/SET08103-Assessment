@@ -42,14 +42,15 @@ public class DatabaseHandler {
      */
     public void connect() {
 
+        // try to load database driver
         try {
-            // Load Database driver
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
 
+        // try to connect to database
         int retries = 6;
         for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database.......");
@@ -99,18 +100,21 @@ public class DatabaseHandler {
         try {
             Statement stmt = con.createStatement();
 
+            //Ensure valid report number
             if (reportNumber > 36 || reportNumber <= 0) {
 
                 throw new Exception("Not a valid report number");
             }
 
+            // REPORT 1
                 if (reportNumber == 1) {
 
                     strSelect =
                             "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC;";
                     rset = stmt.executeQuery(strSelect);
-
                     CountryReport report = new CountryReport();
+
+                    // Loop on result set and add report items to report
                     while (rset.next()) {
                         CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
                         report.addItemToReport(item);
@@ -119,6 +123,7 @@ public class DatabaseHandler {
                 }
 
 
+                // REPORT 2
                 if (reportNumber == 2) {
 
                     Scanner scanner = new Scanner(System.in);
@@ -133,6 +138,8 @@ public class DatabaseHandler {
                     rset = preparedStatement.executeQuery();
                     CountryReport report = new CountryReport();
                     report = new CountryReport();
+
+                    // Loop on result set and add report items to report
                     while (rset.next()) {
                         CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
                         report.addItemToReport(item);
