@@ -184,8 +184,6 @@ public class DatabaseHandler {
                     report.addItemToReport(item);
                 }
                 return report;
-            } else {
-                System.out.println("Not implemented yet");
             }
 
             // REPORT 5
@@ -209,6 +207,8 @@ public class DatabaseHandler {
                     report.addItemToReport(item);
                 }
                 return report;
+            } else {
+                System.out.println("Not implemented yet");
             }
 
         } catch (SQLException ex) {
