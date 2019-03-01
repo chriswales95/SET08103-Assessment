@@ -207,7 +207,32 @@ public class DatabaseHandler {
                     report.addItemToReport(item);
                 }
                 return report;
-            } else {
+            }
+
+            // REPORT 6
+            if (reportNumber == 6) {
+
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("\nEnter Region: ");
+                String region = scanner.nextLine();
+                System.out.println("\nEnter number: ");
+                int num = scanner.nextInt();
+                strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where region = ? order by population DESC LIMIT ?;";
+
+                PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+                preparedStatement.setString(1, region);
+                preparedStatement.setInt(2, num);
+
+                rset = preparedStatement.executeQuery();
+                CountryReport report = new CountryReport();
+                while (rset.next()) {
+                    CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
+                    report.addItemToReport(item);
+                }
+                return report;
+            }
+
+            else {
                 System.out.println("Not implemented yet");
             }
 
