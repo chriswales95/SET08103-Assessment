@@ -12,6 +12,7 @@ public class App {
 
     /**
      * Main method
+     *
      * @param args args passed into main
      */
     public static void main(String[] args) {
@@ -29,7 +30,8 @@ public class App {
             if (choice == 0) {
                 loop = false;
             } else {
-                app.generateReport(choice);
+                Report r = db.getReport(choice);
+                app.printReport(r);
             }
         }
         // Disconnect from database
@@ -96,14 +98,9 @@ public class App {
         return 0;
     }
 
-    /**
-     * Generate the necessary report depending on reportNumber
-     *
-     * @param reportNumber
-     */
-    public void generateReport(int reportNumber) {
 
-        Report report = db.getReport(reportNumber);
+    public void printReport(Report report) {
+
         if (report instanceof CountryReport) {
             CountryReport.printReportHeader();
 
@@ -112,6 +109,7 @@ public class App {
                         CountryReport.getReportFormat(), item.get_code(), item.get_name(), item.get_continent(), item.get_region(), item.get_population(), item.get_capital());
                 System.out.print("\n");
             }
+
         }
     }
 }
