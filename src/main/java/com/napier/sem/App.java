@@ -20,7 +20,7 @@ public class App {
 
         // Connect to database
         App app = new App();
-        db.connect();
+        db.connect("localhost:33060");
         app.printReportOptions();
 
         // Loop until user enters 0 to exit

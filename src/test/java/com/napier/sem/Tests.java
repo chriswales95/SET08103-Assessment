@@ -5,22 +5,23 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class FirstTest {
-
+public class Tests
+{
     static App app;
 
     @BeforeAll
-    static void init() {
+    static void init()
+    {
         app = new App();
     }
 
     @Test
-    void getUserChoice()
+    void testMethod()
     {
-        app.getUserChoice(); //I have absolutely no idea what to input here
+        assertEquals(2,2);
     }
+
 }

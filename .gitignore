@@ -35,3 +35,9 @@ buildNumber.properties
 
 .idea/
 SET08103-Assessment.iml
+
+# Mac
+.DS_Store
+
+#tools
+*.sh
