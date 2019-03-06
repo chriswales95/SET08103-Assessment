@@ -21,7 +21,17 @@ public class App {
 
         // Connect to database
         App app = new App();
-        db.connect("localhost:33060");
+
+        // Connect to database
+        if (args.length < 1)
+        {
+            db.connect("localhost:33060");
+        }
+        else
+        {
+            db.connect(args[0]);
+        }
+
         app.printReportOptions();
 
         // Loop until user enters 0 to exit
