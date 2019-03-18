@@ -175,6 +175,7 @@ public class App {
         }
 
         if (report instanceof CityReport){
+            CityReport.printReportHeader();
             for(CityReport.CityReportItem item : ((CityReport) report).get_reportsItems()){
                 System.out.printf(CityReport.getReportFormat(), item.get_name(), item.get_country(), item.get_district(), item.get_population());
                 System.out.print("\n");
