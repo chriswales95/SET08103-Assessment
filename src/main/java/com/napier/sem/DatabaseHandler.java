@@ -1,7 +1,6 @@
 package com.napier.sem;
 
 import java.sql.*;
-import java.util.Scanner;
 
 /**
  * Purpose of class: Database Handler class of type Singleton to deal with the database connection and reports
@@ -40,32 +39,26 @@ public class DatabaseHandler {
     /**
      * Connect to the MySQL database.
      */
-    public void connect() {
-
-        // try to load database driver
+    protected void connect(String location) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            // Load Database driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
 
-        // try to connect to database
-        int retries = 6;
+        int retries = 10;
         for (int i = 0; i < retries; ++i) {
-            System.out.println("Connecting to database.......");
+            System.out.println("Connecting to database...");
             try {
-                // Wait a bit for db to start
-                Thread.sleep(5000);
-                // Connect to database using root and password
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "pass");
-                System.out.println("Successfully connected!\n");
+                // Connect to database
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
+                System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
-            } catch (InterruptedException ie) {
-                System.out.println("Thread interrupted");
             }
         }
     }
@@ -73,7 +66,7 @@ public class DatabaseHandler {
     /**
      * Disconnect from the MySQL database.
      */
-    public void disconnect() {
+    protected void disconnect() {
         if (con != null) {
             try {
                 // Close connection
@@ -86,160 +79,161 @@ public class DatabaseHandler {
         }
     }
 
-    /**
-     * ArrayList which returns report based on report number
-     *
-     * @param reportNumber the report that needs to be generated
-     * @return results
-     */
-    public Report getReport(int reportNumber) {
 
-        String strSelect = "";
-        ResultSet rset = null;
+    protected Report getReportOne() {
 
+        // REPORT 1
         try {
             Statement stmt = con.createStatement();
+            String strSelect = "";
+            ResultSet rset = null;
 
-            //Ensure valid report number
-            if (reportNumber > 36 || reportNumber <= 0) {
+            strSelect =
+                    "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC;";
+            rset = stmt.executeQuery(strSelect);
 
-                throw new Exception("Not a valid report number");
+            CountryReport report = new CountryReport();
+
+            // Loop on result set and add report items to report
+            while (rset.next()) {
+                CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
+                report.addItemToReport(item);
             }
+            return report;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 
-            // REPORT 1
-            if (reportNumber == 1) {
+    protected Report getReportTwo(String continent) {
+        // REPORT 2
 
-                strSelect =
-                        "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC;";
-                rset = stmt.executeQuery(strSelect);
-                CountryReport report = new CountryReport();
+        try {
+            String strSelect = "";
+            ResultSet rset = null;
 
-                // Loop on result set and add report items to report
-                while (rset.next()) {
-                    CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
-                    report.addItemToReport(item);
-                }
-                return report;
+            strSelect =
+                    "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where continent = ? order by population DESC;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setString(1, continent);
+
+            rset = preparedStatement.executeQuery();
+            CountryReport report = new CountryReport();
+
+            // Loop on result set and add report items to report
+            while (rset.next()) {
+                CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
+                report.addItemToReport(item);
             }
+            return report;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 
+    protected Report getReportThree(String region) {
 
-            // REPORT 2
-            if (reportNumber == 2) {
+        // REPORT 3
+        try {
+            String strSelect = "";
+            ResultSet rset = null;
 
-                Scanner scanner = new Scanner(System.in);
-                System.out.println("\nEnter Continent: "); // Prompt user for input
-                String continent = scanner.nextLine();
-                strSelect =
-                        "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where continent = ? order by population DESC;";
+            strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where region = ? order by population DESC;";
 
-                PreparedStatement preparedStatement = con.prepareStatement(strSelect);
-                preparedStatement.setString(1, continent);
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setString(1, region);
 
-                rset = preparedStatement.executeQuery();
-                CountryReport report = new CountryReport();
-
-                // Loop on result set and add report items to report
-                while (rset.next()) {
-                    CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
-                    report.addItemToReport(item);
-                }
-                return report;
+            rset = preparedStatement.executeQuery();
+            CountryReport report = new CountryReport();
+            while (rset.next()) {
+                CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
+                report.addItemToReport(item);
             }
+            return report;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 
-            // REPORT 3
-            if (reportNumber == 3) {
+    protected Report getReportFour(int num) {
+        // REPORT 4
 
-                Scanner scanner = new Scanner(System.in);
-                System.out.println("\nEnter a region: ");
-                String region = scanner.nextLine();
-                strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where region = ? order by population DESC;";
+        try {
+            String strSelect = "";
+            ResultSet rset = null;
 
-                PreparedStatement preparedStatement = con.prepareStatement(strSelect);
-                preparedStatement.setString(1, region);
+            strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC LIMIT ?;";
 
-                rset = preparedStatement.executeQuery();
-                CountryReport report = new CountryReport();
-                while (rset.next()) {
-                    CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
-                    report.addItemToReport(item);
-                }
-                return report;
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setInt(1, num);
+
+            rset = preparedStatement.executeQuery();
+            CountryReport report = new CountryReport();
+            while (rset.next()) {
+                CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
+                report.addItemToReport(item);
             }
+            return report;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 
-            // REPORT 4
-            if (reportNumber == 4) {
+    protected Report getReportFive(String continent, int num) {
+        // REPORT 5
 
-                Scanner scanner = new Scanner(System.in);
-                System.out.println("\nEnter number: ");
-                int num = scanner.nextInt();
-                strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC LIMIT ?;";
+        try {
+            String strSelect = "";
+            ResultSet rset = null;
 
-                PreparedStatement preparedStatement = con.prepareStatement(strSelect);
-                preparedStatement.setInt(1, num);
 
-                rset = preparedStatement.executeQuery();
-                CountryReport report = new CountryReport();
-                while (rset.next()) {
-                    CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
-                    report.addItemToReport(item);
-                }
-                return report;
+            strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where continent = ? order by population DESC LIMIT ?;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setString(1, continent);
+            preparedStatement.setInt(2, num);
+
+            rset = preparedStatement.executeQuery();
+            CountryReport report = new CountryReport();
+            while (rset.next()) {
+                CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
+                report.addItemToReport(item);
             }
+            return report;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 
-            // REPORT 5
-            if (reportNumber == 5) {
+    protected Report getReportSix(String region, int num) {
+        // REPORT 6
 
-                Scanner scanner = new Scanner(System.in);
-                System.out.println("\nEnter Continent: ");
-                String continent = scanner.nextLine();
-                System.out.println("\nEnter number: ");
-                int num = scanner.nextInt();
-                strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where continent = ? order by population DESC LIMIT ?;";
+        try {
 
-                PreparedStatement preparedStatement = con.prepareStatement(strSelect);
-                preparedStatement.setString(1, continent);
-                preparedStatement.setInt(2, num);
+            String strSelect = "";
+            ResultSet rset = null;
 
-                rset = preparedStatement.executeQuery();
-                CountryReport report = new CountryReport();
-                while (rset.next()) {
-                    CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
-                    report.addItemToReport(item);
-                }
-                return report;
+            strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where region = ? order by population DESC LIMIT ?;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setString(1, region);
+            preparedStatement.setInt(2, num);
+
+            rset = preparedStatement.executeQuery();
+            CountryReport report = new CountryReport();
+            while (rset.next()) {
+                CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
+                report.addItemToReport(item);
             }
-
-            // REPORT 6
-            if (reportNumber == 6) {
-
-                Scanner scanner = new Scanner(System.in);
-                System.out.println("\nEnter Region: ");
-                String region = scanner.nextLine();
-                System.out.println("\nEnter number: ");
-                int num = scanner.nextInt();
-                strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where region = ? order by population DESC LIMIT ?;";
-
-                PreparedStatement preparedStatement = con.prepareStatement(strSelect);
-                preparedStatement.setString(1, region);
-                preparedStatement.setInt(2, num);
-
-                rset = preparedStatement.executeQuery();
-                CountryReport report = new CountryReport();
-                while (rset.next()) {
-                    CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
-                    report.addItemToReport(item);
-                }
-                return report;
-            }
-
-            else {
-                System.out.println("Not implemented yet");
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            return report;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
         return null;
     }

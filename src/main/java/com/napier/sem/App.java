@@ -9,9 +9,11 @@ import java.util.Scanner;
 public class App {
 
     private static DatabaseHandler db = DatabaseHandler.Instance(); // Instance of database
+    private static App app;
 
     /**
      * Main method
+     *
      * @param args args passed into main
      */
     public static void main(String[] args) {
@@ -19,8 +21,15 @@ public class App {
         boolean loop = true;
 
         // Connect to database
-        App app = new App();
-        db.connect();
+         app = new App();
+
+        // Connect to database
+        if (args.length < 1) {
+            db.connect("localhost:33060");
+        } else {
+            db.connect(args[0]);
+        }
+
         app.printReportOptions();
 
         // Loop until user enters 0 to exit
@@ -29,7 +38,7 @@ public class App {
             if (choice == 0) {
                 loop = false;
             } else {
-                app.generateReport(choice);
+                app.callReport(choice);
             }
         }
         // Disconnect from database
@@ -83,27 +92,73 @@ public class App {
     /**
      * Get input from user
      */
-    public int getUserChoice() {
+    private int getUserChoice() {
 
         try {
-            System.out.println("\nEnter number: "); // Prompt user for input
+            System.out.println("\nEnter report number: "); // Prompt user for input
             Scanner sc = new Scanner(System.in);
-            return sc.nextInt(); // Read input in from console
+            return sc.nextInt();
         } catch (NoSuchElementException ex) {
             System.out.println("No input or incorrect input captured");
             System.out.println(ex.getMessage());
         }
+        ;
         return 0;
     }
 
-    /**
-     * Generate the necessary report depending on reportNumber
-     *
-     * @param reportNumber
-     */
-    public void generateReport(int reportNumber) {
+    private void callReport(int num) {
 
-        Report report = db.getReport(reportNumber);
+        Scanner sc = new Scanner(System.in);
+        Report report;
+
+        switch (num) {
+
+            case 1:
+                report = db.getReportOne();
+                app.printReport(report);
+                break;
+
+            case 2:
+                System.out.println("Enter continent");
+
+                report = db.getReportTwo(sc.nextLine());
+                app.printReport(report);
+                break;
+
+            case 3:
+                System.out.println("Enter region");
+                report = db.getReportThree(sc.nextLine());
+                app.printReport(report);
+                break;
+
+            case 4:
+                System.out.println("Enter number");
+                report = db.getReportFour(sc.nextInt());
+                app.printReport(report);
+                break;
+
+            case 5:
+                System.out.println("Enter number");
+                report = db.getReportFour(sc.nextInt());
+                app.printReport(report);
+                break;
+
+            case 6:
+                System.out.println("Enter region");
+                String region = sc.nextLine();
+                System.out.println("Enter number");
+                int number = sc.nextInt();
+                report = db.getReportSix(region, number);
+                app.printReport(report);
+                break;
+
+            default:
+                System.out.println("Not implemented yet");
+        }
+    }
+
+    protected void printReport(Report report) {
+
         if (report instanceof CountryReport) {
             CountryReport.printReportHeader();
 
