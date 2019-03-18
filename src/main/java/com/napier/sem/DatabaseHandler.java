@@ -247,16 +247,20 @@ public class DatabaseHandler {
             ResultSet rset = null;
 
             strSelect =
-                    "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC;";
+                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code order by city.population DESC;";
             rset = stmt.executeQuery(strSelect);
 
-            CountryReport report = new CountryReport();
+            CityReport report = new CityReport();
 
             // Loop on result set and add report items to report
             while (rset.next()) {
-                CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
+                CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
                 report.addItemToReport(item);
             }
+            return report;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
-
 }

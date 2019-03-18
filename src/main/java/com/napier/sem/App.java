@@ -152,6 +152,11 @@ public class App {
                 app.printReport(report);
                 break;
 
+            case 7:
+                report = db.getReportSeven();
+                app.printReport(report);
+                break;
+
             default:
                 System.out.println("Not implemented yet");
         }
@@ -165,6 +170,13 @@ public class App {
             for (CountryReport.CountryReportItem item : ((CountryReport) report).get_reportsItems()) {
                 System.out.printf(
                         CountryReport.getReportFormat(), item.get_code(), item.get_name(), item.get_continent(), item.get_region(), item.get_population(), item.get_capital());
+                System.out.print("\n");
+            }
+        }
+
+        if (report instanceof CityReport){
+            for(CityReport.CityReportItem item : ((CityReport) report).get_reportsItems()){
+                System.out.printf(CityReport.getReportFormat(), item.get_name(), item.get_country(), item.get_district(), item.get_population());
                 System.out.print("\n");
             }
         }

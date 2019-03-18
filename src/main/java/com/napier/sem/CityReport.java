@@ -12,6 +12,10 @@ public class CityReport extends Report {
      */
     private ArrayList<CityReport.CityReportItem> _reportsItems = new ArrayList<>(); // Array list to hold report items
 
+    public ArrayList<CityReportItem> get_reportsItems() {
+        return _reportsItems;
+    }
+
     /**
      * Adds items to array list
      * @param item city report item
@@ -32,7 +36,7 @@ public class CityReport extends Report {
      * @return report format
      */
     public static String getReportFormat() {
-        return "%-30.25s  %-30s  %-20s  %-20s";
+        return "%-30.25s  %-30.25s  %-30s  %-30s";
     }
 
     /**
@@ -65,7 +69,7 @@ public class CityReport extends Report {
             this._district = district;
             this.set_population(population);
         }
-        
+
         public String get_district() {
             return _district;
         }
