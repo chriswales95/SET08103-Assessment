@@ -295,7 +295,7 @@ public class DatabaseHandler {
 
     protected Report getReportNine(String region) {
 
-        // REPORT 8
+        // REPORT 9
         try {
             Statement stmt = con.createStatement();
             String strSelect = "";

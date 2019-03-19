@@ -164,7 +164,7 @@ public class App {
 
             case 9:
                 System.out.println("Enter Region");
-                report = db.getReportEight(sc.nextLine());
+                report = db.getReportNine(sc.nextLine());
                 app.printReport(report);
 
             default:
