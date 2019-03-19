@@ -162,6 +162,11 @@ public class App {
                 report = db.getReportEight(sc.nextLine());
                 app.printReport(report);
 
+            case 9:
+                System.out.println("Enter Region");
+                report = db.getReportEight(sc.nextLine());
+                app.printReport(report);
+
             default:
                 System.out.println("Not implemented yet");
         }
