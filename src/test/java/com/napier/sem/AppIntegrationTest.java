@@ -102,7 +102,7 @@ public class AppIntegrationTest
         CityReport r = (CityReport) db.getReportTwelve(8);
 
         CityReport.CityReportItem i = r.get_reportsItems().get(0);
-        assertEquals("Tokyo", i.get_name());
+        assertEquals("Mumbai (Bombay)", i.get_name());
     }
 
     @Test
@@ -111,6 +111,6 @@ public class AppIntegrationTest
         CityReport r = (CityReport) db.getReportThirteen(5, "Europe");
 
         CityReport.CityReportItem i = r.get_reportsItems().get(0);
-        assertEquals("London", i.get_name());
+        assertEquals("Moscow", i.get_name());
     }
 }

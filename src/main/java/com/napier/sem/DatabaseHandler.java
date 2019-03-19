@@ -369,7 +369,6 @@ public class DatabaseHandler {
     protected Report getReportTwelve(int num)  // REPORT 12
     {
         try {
-            Statement stmt = con.createStatement();
             String strSelect = "";
             ResultSet rset = null;
 
@@ -379,7 +378,7 @@ public class DatabaseHandler {
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setInt(1, num);
 
-            rset = stmt.executeQuery(strSelect);
+            rset = preparedStatement.executeQuery();
             CityReport report = new CityReport();
 
             while (rset.next())
@@ -402,7 +401,6 @@ public class DatabaseHandler {
     protected Report getReportThirteen(int num, String continent)  // REPORT 13
     {
         try {
-            Statement stmt = con.createStatement();
             String strSelect = "";
             ResultSet rset = null;
 
@@ -413,7 +411,7 @@ public class DatabaseHandler {
             preparedStatement.setString(1, continent);
             preparedStatement.setInt(2, num);
 
-            rset = stmt.executeQuery(strSelect);
+            rset = preparedStatement.executeQuery();
             CityReport report = new CityReport();
 
             while (rset.next())
