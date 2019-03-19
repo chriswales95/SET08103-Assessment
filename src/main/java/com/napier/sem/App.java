@@ -177,6 +177,12 @@ public class App {
                 report = db.getReportEleven(sc.nextLine());
                 app.printReport(report);
 
+            case 12:
+                System.out.println("Enter Number: ");
+                report = db.getReportTwelve(sc.nextInt());
+                app.printReport(report);
+                break;
+
             default:
                 System.out.println("Not implemented yet");
         }
