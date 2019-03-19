@@ -61,9 +61,8 @@ public class AppIntegrationTest
     }
 
     @Test
-    void testReportSeven(){
+    void testReportSeven() {
         Report r = db.getReportSeven();
-    }
     }
 
     @Test
@@ -91,7 +90,7 @@ public class AppIntegrationTest
 
     @Test
     void testReportEleven(){
-        CityReport r = (CityReport) db.getReport("Scotland");
+        CityReport r = (CityReport) db.getReportEleven("Scotland");
 
         CityReport.CityReportItem i = r.get_reportsItems().get(0);
         assertEquals("619680", i.get_population());
