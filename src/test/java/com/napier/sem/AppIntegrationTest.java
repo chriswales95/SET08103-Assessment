@@ -96,4 +96,21 @@ public class AppIntegrationTest
         assertEquals(619680, i.get_population());
     }
 
+    @Test
+    void testReportTwelve()
+    {
+        CityReport r = (CityReport) db.getReportTwelve(8);
+
+        CityReport.CityReportItem i = r.get_reportsItems().get(0);
+        assertEquals("Tokyo", i.get_name());
+    }
+
+    @Test
+    void testReportThirteen()
+    {
+        CityReport r = (CityReport) db.getReportThirteen(5, "Europe");
+
+        CityReport.CityReportItem i = r.get_reportsItems().get(0);
+        assertEquals("London", i.get_name());
+    }
 }
