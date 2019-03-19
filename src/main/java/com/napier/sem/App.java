@@ -183,6 +183,15 @@ public class App {
                 app.printReport(report);
                 break;
 
+            case 13:
+                System.out.println("Enter continent: ");
+                String continent = sc.nextLine();
+                System.out.println("Enter number: ");
+                int n = sc.nextInt();
+                report = db.getReportThirteen(n, continent);
+                app.printReport(report);
+                break;
+
             default:
                 System.out.println("Not implemented yet");
         }
