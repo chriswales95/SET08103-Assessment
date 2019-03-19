@@ -161,24 +161,29 @@ public class App {
                 System.out.println("Enter Continent");
                 report = db.getReportEight(sc.nextLine());
                 app.printReport(report);
+                break;
 
             case 9:
                 System.out.println("Enter Region");
                 report = db.getReportNine(sc.nextLine());
                 app.printReport(report);
+                break;
 
             case 10:
                 System.out.println("Enter Country");
                 report = db.getReportTen(sc.nextLine());
                 app.printReport(report);
+                break;
 
             case 11:
                 System.out.println("Enter District");
                 report = db.getReportEleven(sc.nextLine());
                 app.printReport(report);
+                break;
 
             default:
                 System.out.println("Not implemented yet");
+                break;
         }
     }
 

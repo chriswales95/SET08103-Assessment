@@ -44,7 +44,7 @@ public class CityReport extends Report {
      */
     public static void printReportHeader() {
         System.out.println("\n");
-        System.out.printf(CountryReport.getReportFormat(), "NAME", "COUNTRY", "DISTRICT", "POPULATION");
+        System.out.printf(CityReport.getReportFormat(), "NAME", "COUNTRY", "DISTRICT", "POPULATION");
         System.out.println("\n");
     }
 

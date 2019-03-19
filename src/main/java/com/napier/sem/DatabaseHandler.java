@@ -268,17 +268,14 @@ public class DatabaseHandler {
 
         // REPORT 8
         try {
-            Statement stmt = con.createStatement();
-            String strSelect = "";
+
             ResultSet rset = null;
+            String select = "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where country.continent = ? order by city.population DESC;";
 
-            strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where continent = ? order by city.population DESC;";
-
-            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            PreparedStatement preparedStatement = con.prepareStatement(select);
             preparedStatement.setString(1, continent);
+            rset = preparedStatement.executeQuery();
 
-            rset = stmt.executeQuery(strSelect);
             CityReport report = new CityReport();
 
             // Loop on result set and add report items to report
@@ -297,24 +294,20 @@ public class DatabaseHandler {
 
         // REPORT 9
         try {
-            Statement stmt = con.createStatement();
-            String strSelect = "";
+
             ResultSet rset = null;
+            String select = "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where country.region = ? order by city.population DESC;";
 
-            strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where region = ? order by city.population DESC;";
-
-            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            PreparedStatement preparedStatement = con.prepareStatement(select);
             preparedStatement.setString(1, region);
+            rset = preparedStatement.executeQuery();
 
-            rset = stmt.executeQuery(strSelect);
             CityReport report = new CityReport();
-
-            // Loop on result set and add report items to report
-            while (rset.next()) {
+            while (rset.next()){
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
                 report.addItemToReport(item);
             }
+
             return report;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -326,17 +319,14 @@ public class DatabaseHandler {
 
         // REPORT 10
         try {
-            Statement stmt = con.createStatement();
-            String strSelect = "";
+
             ResultSet rset = null;
 
-            strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where country = ? order by city.population DESC;";
-
-            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            String select =
+                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where country.name = ? order by city.population DESC;";
+            PreparedStatement preparedStatement = con.prepareStatement(select);
             preparedStatement.setString(1, country);
-
-            rset = stmt.executeQuery(strSelect);
+            rset = preparedStatement.executeQuery();
             CityReport report = new CityReport();
 
             // Loop on result set and add report items to report
@@ -355,17 +345,13 @@ public class DatabaseHandler {
 
         // REPORT 11
         try {
-            Statement stmt = con.createStatement();
-            String strSelect = "";
             ResultSet rset = null;
 
-            strSelect =
+            String select =
                     "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where district = ? order by city.population DESC;";
-
-            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            PreparedStatement preparedStatement = con.prepareStatement(select);
             preparedStatement.setString(1, district);
-
-            rset = stmt.executeQuery(strSelect);
+            rset = preparedStatement.executeQuery();
             CityReport report = new CityReport();
 
             // Loop on result set and add report items to report

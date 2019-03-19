@@ -77,15 +77,15 @@ public class AppIntegrationTest
         CityReport r = (CityReport) db.getReportNine("Western Europe");
 
         CityReport.CityReportItem i = r.get_reportsItems().get(0);
-        assertEquals("England", i.get_district());
+        assertEquals("Berliini", i.get_district());
     }
 
     @Test
     void testReportTen(){
-        CityReport r = (CityReport) db.getReportNine("France");
+        CityReport r = (CityReport) db.getReportTen("france");
 
         CityReport.CityReportItem i = r.get_reportsItems().get(0);
-        assertEquals("Paris", i.get_name());
+        assertEquals(2125246, i.get_population());
     }
 
     @Test
@@ -93,7 +93,7 @@ public class AppIntegrationTest
         CityReport r = (CityReport) db.getReportEleven("Scotland");
 
         CityReport.CityReportItem i = r.get_reportsItems().get(0);
-        assertEquals("619680", i.get_population());
+        assertEquals(619680, i.get_population());
     }
 
 }
