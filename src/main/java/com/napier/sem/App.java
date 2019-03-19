@@ -168,8 +168,13 @@ public class App {
                 app.printReport(report);
 
             case 10:
-                System.out.println("Enter Region");
+                System.out.println("Enter Country");
                 report = db.getReportTen(sc.nextLine());
+                app.printReport(report);
+
+            case 11:
+                System.out.println("Enter District");
+                report = db.getReportEleven(sc.nextLine());
                 app.printReport(report);
 
             default:
