@@ -59,4 +59,42 @@ public class AppIntegrationTest
         CountryReport.CountryReportItem item = r.get_reportsItems().get(1);
         assertEquals("Santo Domingo de Guzmán", item.get_capital());
     }
+
+    @Test
+    void testReportSeven(){
+        Report r = db.getReportSeven();
+    }
+    }
+
+    @Test
+    void testReportEight(){
+        CityReport r = (CityReport) db.getReportEight("Asia");
+        CityReport.CityReportItem i = r.get_reportsItems().get(0);
+        assertEquals(10500000, i.get_population());
+    }
+
+    @Test
+    void testReportNine(){
+        CityReport r = (CityReport) db.getReportNine("Western Europe");
+
+        CityReport.CityReportItem i = r.get_reportsItems().get(0);
+        assertEquals("England", i.get_district());
+    }
+
+    @Test
+    void testReportTen(){
+        CityReport r = (CityReport) db.getReportNine("France");
+
+        CityReport.CityReportItem i = r.get_reportsItems().get(0);
+        assertEquals("Paris", i.get_name());
+    }
+
+    @Test
+    void testReportEleven(){
+        CityReport r = (CityReport) db.getReport("Scotland");
+
+        CityReport.CityReportItem i = r.get_reportsItems().get(0);
+        assertEquals("619680", i.get_population());
+    }
+
 }
