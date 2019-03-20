@@ -12,7 +12,6 @@ public class AppTest
     static void init()
     {
         app = new App();
-
     }
 
     @Test

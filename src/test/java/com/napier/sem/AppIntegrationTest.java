@@ -21,7 +21,10 @@ public class AppIntegrationTest
 
     @Test
      void testReportOne(){
-        Report r = db.getReportOne();
+        CountryReport r = (CountryReport) db.getReportOne();
+        int size =r.get_reportsItems().size();
+        assertTrue(size >0);
+
     }
 
     @Test
@@ -62,7 +65,9 @@ public class AppIntegrationTest
 
     @Test
     void testReportSeven() {
-        Report r = db.getReportSeven();
+        CityReport r = (CityReport) db.getReportSeven();
+        CityReport.CityReportItem item = r.get_reportsItems().get(0);
+        assertEquals(10500000, item.get_population());
     }
 
     @Test
