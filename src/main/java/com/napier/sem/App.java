@@ -196,6 +196,15 @@ public class App {
                 app.printReport(report);
                 break;
 
+            case 14:
+                System.out.println("Enter region: ");
+                String reg = sc.nextLine();
+                System.out.println("Enter number: ");
+                int nu = sc.nextInt();
+                report = db.getReportFourteen(nu, reg);
+                app.printReport(report);
+                break;
+
             default:
                 System.out.println("Not implemented yet");
                 break;
