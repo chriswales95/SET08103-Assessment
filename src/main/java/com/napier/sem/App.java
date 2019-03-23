@@ -214,6 +214,15 @@ public class App {
                 app.printReport(report);
                 break;
 
+
+            case 16:
+                System.out.println("Enter district: ");
+                String dist = sc.nextLine();
+                System.out.println("Enter number: ");
+                numb = sc.nextInt();
+                report = db.getReportSixteen(numb, dist);
+                app.printReport(report);
+                break;
             default:
                 System.out.println("Not implemented yet");
                 break;

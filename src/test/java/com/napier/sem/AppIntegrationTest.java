@@ -136,4 +136,13 @@ public class AppIntegrationTest
         CityReport.CityReportItem i = r.get_reportsItems().get(0);
         assertEquals("Berlin", i.get_name());
     }
+
+    @Test
+    void testReportSixteen()
+    {
+        CityReport r = (CityReport) db.getReportSixteen(3, "Noord-Brabant");
+
+        CityReport.CityReportItem i = r.get_reportsItems().get(2);
+        assertEquals("Netherlands", i.get_country());
+    }
 }
