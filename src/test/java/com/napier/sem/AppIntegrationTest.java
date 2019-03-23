@@ -125,7 +125,7 @@ public class AppIntegrationTest
         CityReport r = (CityReport) db.getReportFourteen(5, "Caribbean");
 
         CityReport.CityReportItem i = r.get_reportsItems().get(0);
-        assertEquals("San Juan", i.get_name());
+        assertEquals("La Habana", i.get_name());
     }
     
     @Test
