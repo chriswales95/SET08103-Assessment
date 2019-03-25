@@ -223,6 +223,12 @@ public class App {
                 report = db.getReportSixteen(numb, dist);
                 app.printReport(report);
                 break;
+
+            case 17:
+                report = db.getReportSeventeen();
+                app.printReport(report);
+                break;
+
             default:
                 System.out.println("Not implemented yet");
                 break;
