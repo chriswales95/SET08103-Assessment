@@ -507,7 +507,7 @@ public class DatabaseHandler {
             ResultSet rset = null;
 
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code order by city.population DESC;";
+                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where city.district = ? order by city.population DESC LIMIT ?;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, district);
