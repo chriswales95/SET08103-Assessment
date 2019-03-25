@@ -152,6 +152,6 @@ public class AppIntegrationTest
         CityReport r = (CityReport) db.getReportSeventeen();
 
         CityReport.CityReportItem i = r.get_reportsItems().get(2);
-        assertEquals("Kingston", i.get_country());
+        assertEquals("Mexico", i.get_country());
     }
 }
