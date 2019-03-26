@@ -138,8 +138,11 @@ public class App {
                 break;
 
             case 5:
+                System.out.println("Enter continent");
+                String Continent = sc.nextLine();
                 System.out.println("Enter number");
-                report = db.getReportFour(sc.nextInt());
+                int number2 = sc.nextInt();
+                report = db.getReportFive(Continent, number2);
                 app.printReport(report);
                 break;
 
