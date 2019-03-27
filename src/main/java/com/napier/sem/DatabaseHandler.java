@@ -1,10 +1,15 @@
 package com.napier.sem;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.sql.*;
 
 /**
  * Purpose of class: Database Handler class of type Singleton to deal with the database connection and reports
  */
+@RestController
 public class DatabaseHandler {
 
     /**
@@ -39,7 +44,7 @@ public class DatabaseHandler {
     /**
      * Connect to the MySQL database.
      */
-    protected void connect(String location) {
+    protected static void connect(String location) {
         try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -63,23 +68,8 @@ public class DatabaseHandler {
         }
     }
 
-    /**
-     * Disconnect from the MySQL database.
-     */
-    protected void disconnect() {
-        if (con != null) {
-            try {
-                // Close connection
-                con.close();
-                System.out.println("--------------------------------------");
-                System.out.println("Connection to database closed");
-            } catch (Exception e) {
-                System.out.println("Error closing connection to database");
-            }
-        }
-    }
 
-
+    @RequestMapping("r1")
     protected Report getReportOne() {
 
         // REPORT 1
@@ -106,7 +96,8 @@ public class DatabaseHandler {
         return null;
     }
 
-    protected Report getReportTwo(String continent) {
+    @RequestMapping("r2")
+    protected Report getReportTwo(@RequestParam(value = "continent") String continent) {
         // REPORT 2
 
         try {

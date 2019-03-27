@@ -28,7 +28,7 @@ public class AppTest
         item.set_name("Scotland");
         item.set_population(100000);
 
-        app.printReport(r);
+       // app.printReport(r);
     }
 
 }
