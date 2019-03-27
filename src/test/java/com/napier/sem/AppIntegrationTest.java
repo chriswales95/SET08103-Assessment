@@ -161,7 +161,7 @@ public class AppIntegrationTest
         CityReport r = (CityReport) db.getReportEighteen("Europe");
 
         CityReport.CityReportItem i = r.get_reportsItems().get(2);
-        assertEquals("Sweden", i.get_country());
+        assertEquals("Germany", i.get_country());
     }
 
     @Test
@@ -170,6 +170,6 @@ public class AppIntegrationTest
         CityReport r = (CityReport) db.getReportNineteen("Caribbean");
 
         CityReport.CityReportItem i = r.get_reportsItems().get(2);
-        assertEquals("Cuba", i.get_country());
+        assertEquals("Haiti", i.get_country());
     }
 }
