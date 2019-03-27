@@ -163,4 +163,13 @@ public class AppIntegrationTest
         CityReport.CityReportItem i = r.get_reportsItems().get(2);
         assertEquals("Sweden", i.get_country());
     }
+
+    @Test
+    void testReportNineteen()
+    {
+        CityReport r = (CityReport) db.getReportNineteen("Caribbean");
+
+        CityReport.CityReportItem i = r.get_reportsItems().get(2);
+        assertEquals("Cuba", i.get_country());
+    }
 }

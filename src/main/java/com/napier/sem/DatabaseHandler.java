@@ -559,7 +559,7 @@ public class DatabaseHandler {
         return null;
     }
 
-    protected Report getReportEighteen(String continent)  // REPORT 16
+    protected Report getReportEighteen(String continent)  // REPORT 18
     {
         try {
             String strSelect = "";
@@ -570,6 +570,34 @@ public class DatabaseHandler {
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, continent);
+
+            rset = preparedStatement.executeQuery();
+            CityReport report = new CityReport();
+
+            while (rset.next()) {
+                CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
+                report.addItemToReport(item);
+            }
+
+            return report;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
+
+    protected Report getReportNineteen(String region)  // REPORT 19
+    {
+        try {
+            String strSelect = "";
+            ResultSet rset = null;
+
+            strSelect =
+                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital where region = ? order by city.population DESC;;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setString(1, region);
 
             rset = preparedStatement.executeQuery();
             CityReport report = new CityReport();
