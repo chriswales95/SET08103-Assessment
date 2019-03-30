@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Salaries by Title</title>
+    <title>Country Report</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -25,13 +25,15 @@
     </style>
 </head>
 <body>
-<div class="showData">Waiting</div>
+<div class="showData"></div>
 </body>
 <script>
     var urlParams = new URLSearchParams(window.location.search);
-    var title = urlParams.get('title');
+    var id = urlParams.get('id');
 
-    var URL = "http://" + window.location.hostname + "/app/salaries_title?title=" + title;
+    var URL = "http://" + window.location.hostname + "/app/continent?id=" + id;
+
+    $(".showData").html(URL);
 
     $.getJSON(URL, function(data) {
         // EXTRACT VALUE FOR HTML HEADER.

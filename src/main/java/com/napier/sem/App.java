@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -87,7 +88,7 @@ public class App {
 
 
     @RequestMapping("report_one")
-    public Report getReportOne() {
+    public ArrayList<CountryReport.CountryReportItem> getReportOne() {
 
         // REPORT 1
         try {
@@ -106,7 +107,7 @@ public class App {
                 CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
                 report.addItemToReport(item);
             }
-            return report;
+            return report.get_reportsItems();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
