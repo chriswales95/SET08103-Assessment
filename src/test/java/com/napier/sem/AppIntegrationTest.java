@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AppIntegrationTest
 {
     static App app;
-    static DatabaseHandler db;
 
     @BeforeAll
     static void init()
