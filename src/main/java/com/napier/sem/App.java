@@ -14,7 +14,6 @@ import java.util.Scanner;
 @RestController
 public class App {
 
-    private static DatabaseHandler db = DatabaseHandler.Instance(); // Instance of database
 
     /**
      * Main method
@@ -32,8 +31,6 @@ public class App {
 
         SpringApplication.run(App.class, args);
     }
-
-
 
 
     protected static void printReport(Report report) {

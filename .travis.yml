@@ -77,7 +77,7 @@ jobs:
         # Login to our Google Cloud Account using credentials file
         - gcloud auth activate-service-account --key-file client-secret.json
       script:
-      # Set the project we will work in.
+        # Set the project we will work in.
         - gcloud config set project semethods-235110
         # Set the zone to work in.
         - gcloud config set compute/zone europe-west2-b
