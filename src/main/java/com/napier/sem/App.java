@@ -39,7 +39,10 @@ public class App {
         SpringApplication.run(App.class, args);
     }
 
-    protected static void connect(String location) {
+    /**
+     * Connect to database.
+     */
+    public static void connect(String location) {
         try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -63,9 +66,28 @@ public class App {
         }
     }
 
+    /**
+     * Disconnect to database.
+     */
+    public static void disconnect()
+    {
+        if (con != null)
+        {
+            try
+            {
+                // Close connection
+                con.close();
+            }
+            catch (Exception e)
+            {
+                System.out.println("Error closing connection to database");
+            }
+        }
+    }
 
-    @RequestMapping("r1")
-    protected Report getReportOne() {
+
+    @RequestMapping("report_one")
+    public Report getReportOne() {
 
         // REPORT 1
         try {
@@ -91,8 +113,8 @@ public class App {
         return null;
     }
 
-    @RequestMapping("r2")
-    protected Report getReportTwo(@RequestParam(value = "continent") String continent) {
+    @RequestMapping("report_two")
+    public Report getReportTwo(@RequestParam(value = "continent") String continent) {
         // REPORT 2
 
         try {
@@ -120,7 +142,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportThree(String region) {
+    public Report getReportThree(String region) {
 
         // REPORT 3
         try {
@@ -145,7 +167,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportFour(int num) {
+    public Report getReportFour(int num) {
         // REPORT 4
 
         try {
@@ -170,7 +192,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportFive(String continent, int num) {
+    public Report getReportFive(String continent, int num) {
         // REPORT 5
 
         try {
@@ -197,7 +219,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportSix(String region, int num) {
+    public Report getReportSix(String region, int num) {
         // REPORT 6
 
         try {
@@ -224,7 +246,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportSeven() {
+    public Report getReportSeven() {
 
         // REPORT 7
         try {
@@ -250,7 +272,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportEight(String continent) {
+    public Report getReportEight(String continent) {
 
         // REPORT 8
         try {
@@ -276,7 +298,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportNine(String region) {
+    public Report getReportNine(String region) {
 
         // REPORT 9
         try {
@@ -301,7 +323,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportTen(String country) {
+    public Report getReportTen(String country) {
 
         // REPORT 10
         try {
@@ -327,7 +349,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportEleven(String district) {
+    public Report getReportEleven(String district) {
 
         // REPORT 11
         try {
@@ -352,7 +374,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportTwelve(int num)  // REPORT 12
+    public Report getReportTwelve(int num)  // REPORT 12
     {
         try {
             String strSelect = "";
@@ -384,7 +406,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportThirteen(int num, String continent)  // REPORT 13
+    public Report getReportThirteen(int num, String continent)  // REPORT 13
     {
         try {
             String strSelect = "";
@@ -417,7 +439,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportFourteen(int num, String region)  // REPORT 14
+    public Report getReportFourteen(int num, String region)  // REPORT 14
     {
         try
         {
@@ -451,7 +473,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportFifteen(int num, String country)  // REPORT 15
+    public Report getReportFifteen(int num, String country)  // REPORT 15
     {
         try
         {
@@ -485,7 +507,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportSixteen(int num, String district)  // REPORT 16
+    public Report getReportSixteen(int num, String district)  // REPORT 16
     {
         try
         {
@@ -519,7 +541,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportSeventeen() {
+    public Report getReportSeventeen() {
 
         // REPORT 17
         try {
@@ -545,7 +567,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportEighteen(String continent)  // REPORT 18
+    public Report getReportEighteen(String continent)  // REPORT 18
     {
         try {
             String strSelect = "";
@@ -573,7 +595,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportNineteen(String region)  // REPORT 19
+    public Report getReportNineteen(String region)  // REPORT 19
     {
         try {
             String strSelect = "";
