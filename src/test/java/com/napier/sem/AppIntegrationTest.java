@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AppIntegrationTest
@@ -19,8 +21,8 @@ public class AppIntegrationTest
 
     @Test
      void testReportOne(){
-        CountryReport r = (CountryReport) app.getReportOne();
-        int size =r.get_reportsItems().size();
+        ArrayList<CountryReport.CountryReportItem> r =  app.getReportOne();
+        int size =r.size();
         assertTrue(size >0);
 
     }
