@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 /**
  * Purpose of class: Main Application

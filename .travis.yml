@@ -112,7 +112,7 @@ jobs:
         # Tell kubernetes to run the built web image, opening port 80
         - kubectl run web --image=gcr.io/${PROJECT_ID}/web --port 80
         # Expose the web interface, mapping external port 80 to internal port 80
-        - kubectl expose deployment web --port=80 --target-port=80 --type=LoadBalancer
+        - kubectl expose deployment app --port=80 --target-port=80 --type=LoadBalancer
 stages:
   - unit tests
   - integration tests
