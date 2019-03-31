@@ -1,5 +1,5 @@
 # Use the latest MySQL image
-FROM mysql:8.0
+FROM mysql
 
 # Set the working directory
 WORKDIR /tmp
