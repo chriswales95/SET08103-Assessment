@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 public class AppTest
 {
     static App app;
-    static DatabaseHandler db;
 
     @BeforeAll
     static void init()
