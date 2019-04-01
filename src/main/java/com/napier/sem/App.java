@@ -23,7 +23,7 @@ public class App {
 
         // Connect to database
         if (args.length < 1) {
-            App.connect("localhost:33060");
+            App.connect("localhost:3306");
         } else {
             App.connect(args[0]);
         }
