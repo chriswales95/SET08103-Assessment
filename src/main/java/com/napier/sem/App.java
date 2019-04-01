@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.*;
 
-
-/**
- * Purpose of class: Main Application
- */
 @SpringBootApplication
 @RestController
 public class App {
@@ -141,7 +137,8 @@ public class App {
         return null;
     }
 
-    protected Report getReportThree(String region) {
+    @RequestMapping("r3")
+    protected Report getReportThree(@RequestParam(value = "region") String region) {
 
         // REPORT 3
         try {
@@ -165,6 +162,7 @@ public class App {
         }
         return null;
     }
+
 
     protected Report getReportFour(int num) {
         // REPORT 4
