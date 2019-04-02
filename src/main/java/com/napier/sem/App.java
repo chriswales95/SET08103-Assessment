@@ -168,10 +168,11 @@ public class App {
         return null;
     }
 
-
-    protected Report getReportFour(int num) {
+    @RequestMapping("r4")
+    protected Report getReportFour(@RequestParam(value = "number") String number) {
         // REPORT 4
 
+        int num = Integer.parseInt(number);
         try {
             String strSelect = "";
             ResultSet rset = null;

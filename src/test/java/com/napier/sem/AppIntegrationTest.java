@@ -42,7 +42,7 @@ public class AppIntegrationTest
 
     @Test
     void testReportFour(){
-        CountryReport r = (CountryReport) app.getReportFour(6);
+        CountryReport r = (CountryReport) app.getReportFour("6");
         CountryReport.CountryReportItem item = r.get_reportsItems().get(3);
 
         assertEquals("Jakarta", item.get_capital());
