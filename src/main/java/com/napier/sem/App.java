@@ -86,7 +86,7 @@ public class App {
         }
     }
 
-    @RequestMapping("r1")
+    @RequestMapping("report_one")
     protected Report getReportOne() {
 
         // REPORT 1
