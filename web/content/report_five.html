@@ -34,7 +34,7 @@
      var continent = urlParams.get('continent');
      var number = urlParams.get('number');
 
-    var URL = "http://" + window.location.hostname + "/app/report_five?continent=" + continent + "&unumber=" + number;
+    var URL = "http://" + window.location.hostname + "/app/report_five?continent=" + continent + "&number=" + number;
 
     $.getJSON(URL, function(data) {
         // EXTRACT VALUE FOR HTML HEADER.
