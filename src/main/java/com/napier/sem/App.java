@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 @SpringBootApplication
 @RestController
@@ -87,7 +88,8 @@ public class App {
     }
 
     @RequestMapping("report_one")
-    protected Report getReportOne() {
+
+    protected ArrayList<CountryReport.CountryReportItem> getReportOne() {
 
         // REPORT 1
         try {
@@ -106,15 +108,15 @@ public class App {
                 CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
                 report.addItemToReport(item);
             }
-            return report;
+            return report.get_reportsItems();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
 
-    @RequestMapping("r2")
-    protected Report getReportTwo(@RequestParam(value = "continent") String continent) {
+    @RequestMapping("report_two")
+    protected ArrayList<CountryReport.CountryReportItem> getReportTwo(@RequestParam(value = "continent") String continent) {
         // REPORT 2
 
         try {
@@ -135,7 +137,7 @@ public class App {
                 CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
                 report.addItemToReport(item);
             }
-            return report;
+            return report.get_reportsItems();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -143,7 +145,7 @@ public class App {
     }
 
     @RequestMapping("r3")
-    protected Report getReportThree(@RequestParam(value = "region") String region) {
+    protected ArrayList<CountryReport.CountryReportItem> getReportThree(@RequestParam(value = "region") String region) {
 
         // REPORT 3
         try {
@@ -161,7 +163,7 @@ public class App {
                 CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
                 report.addItemToReport(item);
             }
-            return report;
+            return report.get_reportsItems();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -169,7 +171,7 @@ public class App {
     }
 
     @RequestMapping("r4")
-    protected Report getReportFour(@RequestParam(value = "number") String number) {
+    protected ArrayList<CountryReport.CountryReportItem> getReportFour(@RequestParam(value = "number") String number) {
         // REPORT 4
 
         int num = Integer.parseInt(number);
@@ -188,14 +190,14 @@ public class App {
                 CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
                 report.addItemToReport(item);
             }
-            return report;
+            return report.get_reportsItems();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
 
-    protected Report getReportFive(String continent, int num) {
+    protected ArrayList<CountryReport.CountryReportItem> getReportFive(String continent, int num) {
         // REPORT 5
 
         try {
@@ -215,14 +217,14 @@ public class App {
                 CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
                 report.addItemToReport(item);
             }
-            return report;
+            return report.get_reportsItems();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
 
-    protected Report getReportSix(String region, int num) {
+    protected ArrayList<CountryReport.CountryReportItem> getReportSix(String region, int num) {
         // REPORT 6
 
         try {
@@ -242,14 +244,14 @@ public class App {
                 CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
                 report.addItemToReport(item);
             }
-            return report;
+            return report.get_reportsItems();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
 
-    protected Report getReportSeven() {
+    protected ArrayList<CityReport.CityReportItem> getReportSeven() {
 
         // REPORT 7
         try {
@@ -268,14 +270,14 @@ public class App {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
                 report.addItemToReport(item);
             }
-            return report;
+            return report.get_reportsItems();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
 
-    protected Report getReportEight(String continent) {
+    protected ArrayList<CityReport.CityReportItem> getReportEight(String continent) {
 
         // REPORT 8
         try {
@@ -294,14 +296,14 @@ public class App {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
                 report.addItemToReport(item);
             }
-            return report;
+            return report.get_reportsItems();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
 
-    protected Report getReportNine(String region) {
+    protected ArrayList<CityReport.CityReportItem> getReportNine(String region) {
 
         // REPORT 9
         try {
@@ -319,14 +321,14 @@ public class App {
                 report.addItemToReport(item);
             }
 
-            return report;
+            return report.get_reportsItems();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
 
-    protected Report getReportTen(String country) {
+    protected ArrayList<CityReport.CityReportItem> getReportTen(String country) {
 
         // REPORT 10
         try {
@@ -345,14 +347,14 @@ public class App {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
                 report.addItemToReport(item);
             }
-            return report;
+            return report.get_reportsItems();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
 
-    protected Report getReportEleven(String district) {
+    protected ArrayList<CityReport.CityReportItem> getReportEleven(String district) {
 
         // REPORT 11
         try {
@@ -370,14 +372,14 @@ public class App {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
                 report.addItemToReport(item);
             }
-            return report;
+            return report.get_reportsItems();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
 
-    protected Report getReportTwelve(int num)  // REPORT 12
+    protected ArrayList<CityReport.CityReportItem> getReportTwelve(int num)  // REPORT 12
     {
         try {
             String strSelect = "";
@@ -398,7 +400,7 @@ public class App {
                 report.addItemToReport(item);
             }
 
-            return report;
+            return report.get_reportsItems();
         }
 
         catch (SQLException e)
@@ -409,7 +411,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportThirteen(int num, String continent)  // REPORT 13
+    protected ArrayList<CityReport.CityReportItem> getReportThirteen(int num, String continent)  // REPORT 13
     {
         try {
             String strSelect = "";
@@ -431,7 +433,7 @@ public class App {
                 report.addItemToReport(item);
             }
 
-            return report;
+            return report.get_reportsItems();
         }
 
         catch (SQLException e)
@@ -442,7 +444,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportFourteen(int num, String region)  // REPORT 14
+    protected ArrayList<CityReport.CityReportItem> getReportFourteen(int num, String region)  // REPORT 14
     {
         try
         {
@@ -465,7 +467,7 @@ public class App {
                 report.addItemToReport(item);
             }
 
-            return report;
+            return report.get_reportsItems();
         }
 
         catch (SQLException e)
@@ -476,7 +478,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportFifteen(int num, String country)  // REPORT 15
+    protected ArrayList<CityReport.CityReportItem> getReportFifteen(int num, String country)  // REPORT 15
     {
         try
         {
@@ -499,7 +501,7 @@ public class App {
                 report.addItemToReport(item);
             }
 
-            return report;
+            return report.get_reportsItems();
         }
 
         catch (SQLException e)
@@ -510,7 +512,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportSixteen(int num, String district)  // REPORT 16
+    protected ArrayList<CityReport.CityReportItem> getReportSixteen(int num, String district)  // REPORT 16
     {
         try
         {
@@ -533,7 +535,7 @@ public class App {
                 report.addItemToReport(item);
             }
 
-            return report;
+            return report.get_reportsItems();
         }
 
         catch (SQLException e)
@@ -544,7 +546,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportSeventeen() {
+    protected ArrayList<CityReport.CityReportItem> getReportSeventeen() {
 
         // REPORT 17
         try {
@@ -563,14 +565,14 @@ public class App {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
                 report.addItemToReport(item);
             }
-            return report;
+            return report.get_reportsItems();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
 
-    protected Report getReportEighteen(String continent)  // REPORT 18
+    protected ArrayList<CityReport.CityReportItem> getReportEighteen(String continent)  // REPORT 18
     {
         try {
             String strSelect = "";
@@ -590,7 +592,7 @@ public class App {
                 report.addItemToReport(item);
             }
 
-            return report;
+            return report.get_reportsItems();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -598,7 +600,7 @@ public class App {
         return null;
     }
 
-    protected Report getReportNineteen(String region)  // REPORT 19
+    protected ArrayList<CityReport.CityReportItem> getReportNineteen(String region)  // REPORT 19
     {
         try {
             String strSelect = "";
@@ -618,7 +620,7 @@ public class App {
                 report.addItemToReport(item);
             }
 
-            return report;
+            return report.get_reportsItems();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
