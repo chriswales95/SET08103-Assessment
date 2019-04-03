@@ -88,6 +88,7 @@ public class App {
     }
 
     @RequestMapping("report_one")
+
     protected ArrayList<CountryReport.CountryReportItem> getReportOne() {
 
         // REPORT 1
