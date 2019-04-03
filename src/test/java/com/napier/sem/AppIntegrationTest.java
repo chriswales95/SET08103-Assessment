@@ -52,13 +52,13 @@ public class AppIntegrationTest
 
     @Test
     void testReportFive(){
-        ArrayList<CountryReport.CountryReportItem> r =  app.getReportFive("Europe", 30);
+        ArrayList<CountryReport.CountryReportItem> r =  app.getReportFive("Europe", "30");
         assertEquals(30, r.size());
     }
 
     @Test
     void testReportSix(){
-        ArrayList<CountryReport.CountryReportItem> r = app.getReportSix("Caribbean", 2);
+        ArrayList<CountryReport.CountryReportItem> r = app.getReportSix("Caribbean", "2");
         CountryReport.CountryReportItem item = r.get(1);
         assertEquals("Santo Domingo de Guzmán", item.get_capital());
     }
