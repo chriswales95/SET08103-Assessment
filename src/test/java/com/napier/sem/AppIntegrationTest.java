@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AppIntegrationTest
-{
+{//NOPMD - PMD was returning 'Too many methods'.
     static App app;
 
     @BeforeAll

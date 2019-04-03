@@ -114,7 +114,7 @@ public class App {
         return null;
     }
 
-    @RequestMapping("r2")
+    @RequestMapping("report_two")
     protected ArrayList<CountryReport.CountryReportItem> getReportTwo(@RequestParam(value = "continent") String continent) {
         // REPORT 2
 
@@ -196,9 +196,11 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CountryReport.CountryReportItem> getReportFive(String continent, int num) {
+    @RequestMapping("r5")
+    protected ArrayList<CountryReport.CountryReportItem> getReportFive(@RequestParam(value = "continent") String continent, @RequestParam(value = "number") String number) {
         // REPORT 5
 
+        int num = Integer.parseInt(number);
         try {
             String strSelect = "";
             ResultSet rset = null;
@@ -223,9 +225,11 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CountryReport.CountryReportItem> getReportSix(String region, int num) {
+    @RequestMapping("r6")
+    protected ArrayList<CountryReport.CountryReportItem> getReportSix(@RequestParam(value = "region") String region, @RequestParam(value = "number") String number) {
         // REPORT 6
 
+        int num = Integer.parseInt(number);
         try {
 
             String strSelect = "";
@@ -250,6 +254,7 @@ public class App {
         return null;
     }
 
+    @RequestMapping("r7")
     protected ArrayList<CityReport.CityReportItem> getReportSeven() {
 
         // REPORT 7
