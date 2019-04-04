@@ -226,7 +226,7 @@ public class App {
         return null;
     }
 
-    @RequestMapping("r6")
+    @RequestMapping("report_six")
     protected ArrayList<CountryReport.CountryReportItem> getReportSix(@RequestParam(value = "region") String region, @RequestParam(value = "number") String number) {
         // REPORT 6
 
