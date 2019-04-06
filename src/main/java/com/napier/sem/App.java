@@ -659,5 +659,36 @@ public class App {
 
         return null;
     }
+
+    protected ArrayList<CityReport.CityReportItem> getReportTwentyOne(String continent, String number)  // REPORT 19
+    {
+        try {
+            String strSelect = "";
+            ResultSet rset = null;
+
+            int num = Integer.parseInt(number);
+            strSelect =
+                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital where continent= ? order by city.population DESC LIMIT ?;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setString(1, continent);
+            preparedStatement.setInt(2, num);
+
+
+            rset = preparedStatement.executeQuery();
+            CityReport report = new CityReport();
+
+            while (rset.next()) {
+                CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
+                report.addItemToReport(item);
+            }
+
+            return report.get_reportsItems();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
 }
 
