@@ -674,7 +674,7 @@ public class App {
     }
 
     @RequestMapping("report_twenty_one")
-    protected ArrayList<CityReport.CityReportItem> getReportTwentyOne(@RequestParam(value = "continentc") String continent, @RequestParam(value = "number") String number)  // REPORT 19
+    protected ArrayList<CityReport.CityReportItem> getReportTwentyOne(@RequestParam(value = "continent") String continent, @RequestParam(value = "number") String number)  // REPORT 19
     {
         try {
             String strSelect = "";
