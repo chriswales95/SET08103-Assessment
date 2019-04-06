@@ -31,9 +31,11 @@
     var urlParams = new URLSearchParams(window.location.search);
     var title = urlParams.get('title');
 
-     var region = urlParams.get('region');
 
-    var URL = "http://" + window.location.hostname + "/app/report_five?region=" + region + "&number=" + number;
+     var continent = urlParams.get('region');
+     var number = urlParams.get('number');
+
+    var URL = "http://" + window.location.hostname + "/app/report_six?region=" + region + "&number=" + number;
 
     $.getJSON(URL, function(data) {
         // EXTRACT VALUE FOR HTML HEADER.
