@@ -64,8 +64,6 @@ public class App {
         }
     }
 
-
-
     protected static void printReport(Report report) {
 
         if (report instanceof CountryReport) {
@@ -616,6 +614,35 @@ public class App {
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, region);
+
+            rset = preparedStatement.executeQuery();
+            CityReport report = new CityReport();
+
+            while (rset.next()) {
+                CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
+                report.addItemToReport(item);
+            }
+
+            return report.get_reportsItems();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
+
+    protected ArrayList<CityReport.CityReportItem> getReportTwenty(String number)  // REPORT 19
+    {
+        try {
+            String strSelect = "";
+            ResultSet rset = null;
+
+            int num = Integer.parseInt(number);
+            strSelect =
+                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital order by city.population DESC LIMIT ?;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setInt(1, num);
 
             rset = preparedStatement.executeQuery();
             CityReport report = new CityReport();

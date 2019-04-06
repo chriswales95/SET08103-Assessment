@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AppIntegrationTest
-{//NOPMD - PMD was returning 'Too many methods'.
+{
     static App app;
 
     @BeforeAll
@@ -171,5 +171,14 @@ public class AppIntegrationTest
 
         CityReport.CityReportItem i = r.get(2);
         assertEquals("Haiti", i.get_country());
+    }
+
+    @Test
+    void testReportTwenty()
+    {
+        ArrayList<CityReport.CityReportItem> r = app.getReportTwenty("115");
+
+        CityReport.CityReportItem i = r.get(114);
+        assertEquals("Macao", i.get_country());
     }
 }
