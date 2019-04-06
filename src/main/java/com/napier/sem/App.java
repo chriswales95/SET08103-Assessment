@@ -224,7 +224,7 @@ public class App {
         return null;
     }
 
-    @RequestMapping("r6")
+    @RequestMapping("report_six")
     protected ArrayList<CountryReport.CountryReportItem> getReportSix(@RequestParam(value = "region") String region, @RequestParam(value = "number") String number) {
         // REPORT 6
 
@@ -253,7 +253,7 @@ public class App {
         return null;
     }
 
-    @RequestMapping("r7")
+    @RequestMapping("report_seven")
     protected ArrayList<CityReport.CityReportItem> getReportSeven() {
 
         // REPORT 7
@@ -280,7 +280,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportEight(String continent) {
+    @RequestMapping("report_eight")
+    protected ArrayList<CityReport.CityReportItem> getReportEight(@RequestParam(value = "continent") String continent) {
 
         // REPORT 8
         try {
@@ -306,7 +307,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportNine(String region) {
+    @RequestMapping("report_nine")
+    protected ArrayList<CityReport.CityReportItem> getReportNine(@RequestParam(value = "region") String region) {
 
         // REPORT 9
         try {
@@ -331,7 +333,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportTen(String country) {
+    @RequestMapping("report_ten")
+    protected ArrayList<CityReport.CityReportItem> getReportTen(@RequestParam(value = "country") String country) {
 
         // REPORT 10
         try {
@@ -357,7 +360,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportEleven(String district) {
+    @RequestMapping("report_eleven")
+    protected ArrayList<CityReport.CityReportItem> getReportEleven(@RequestParam(value = "district") String district) {
 
         // REPORT 11
         try {
@@ -382,7 +386,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportTwelve(int num)  // REPORT 12
+    @RequestMapping("report_twelve")
+    protected ArrayList<CityReport.CityReportItem> getReportTwelve(@RequestParam(value = "number") int num)  // REPORT 12
     {
         try {
             String strSelect = "";
@@ -414,7 +419,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportThirteen(int num, String continent)  // REPORT 13
+    @RequestMapping("report_thirteen")
+    protected ArrayList<CityReport.CityReportItem> getReportThirteen(@RequestParam(value = "number")int num, @RequestParam(value = "continent")String continent)  // REPORT 13
     {
         try {
             String strSelect = "";
@@ -447,7 +453,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportFourteen(int num, String region)  // REPORT 14
+    @RequestMapping("report_Fourteen")
+    protected ArrayList<CityReport.CityReportItem> getReportFourteen(@RequestParam(value = "number") int num, @RequestParam(value = "region") String region)  // REPORT 14
     {
         try
         {
@@ -481,7 +488,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportFifteen(int num, String country)  // REPORT 15
+    @RequestMapping("report_fifteen")
+    protected ArrayList<CityReport.CityReportItem> getReportFifteen(@RequestParam(value = "number") int num, @RequestParam(value = "country") String country)  // REPORT 15
     {
         try
         {
@@ -515,7 +523,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportSixteen(int num, String district)  // REPORT 16
+    @RequestMapping("report_sixteen")
+    protected ArrayList<CityReport.CityReportItem> getReportSixteen(@RequestParam(value = "number") int num, @RequestParam(value = "district") String district)  // REPORT 16
     {
         try
         {
@@ -549,6 +558,7 @@ public class App {
         return null;
     }
 
+    @RequestMapping("report_seventeen")
     protected ArrayList<CityReport.CityReportItem> getReportSeventeen() {
 
         // REPORT 17
@@ -575,7 +585,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportEighteen(String continent)  // REPORT 18
+    @RequestMapping("report_eighteen")
+    protected ArrayList<CityReport.CityReportItem> getReportEighteen(@RequestParam(value = "continent") String continent)  // REPORT 18
     {
         try {
             String strSelect = "";
@@ -603,7 +614,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportNineteen(String region)  // REPORT 19
+    @RequestMapping("report_nineteen")
+    protected ArrayList<CityReport.CityReportItem> getReportNineteen(@RequestParam(value = "region") String region)  // REPORT 19
     {
         try {
             String strSelect = "";
@@ -631,7 +643,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportTwenty(String number)  // REPORT 19
+    @RequestMapping("report_twenty")
+    protected ArrayList<CityReport.CityReportItem> getReportTwenty(@RequestParam(value = "number") String number)  // REPORT 19
     {
         try {
             String strSelect = "";
@@ -660,7 +673,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportTwentyOne(String continent, String number)  // REPORT 19
+    @RequestMapping("report_twenty_one")
+    protected ArrayList<CityReport.CityReportItem> getReportTwentyOne(@RequestParam(value = "continentc") String continent, @RequestParam(value = "number") String number)  // REPORT 19
     {
         try {
             String strSelect = "";
