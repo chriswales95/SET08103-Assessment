@@ -191,4 +191,13 @@ public class AppIntegrationTest
         assertEquals("Belarus", i.get_country());
     }
 
+    @Test
+    void testReportTwentyTwo()
+    {
+        ArrayList<CityReport.CityReportItem> r = app.getReportTwentyTwo("Caribbean", "10");
+
+        CityReport.CityReportItem i = r.get(9);
+        assertEquals("Kingston", i.get_country());
+    }
+
 }
