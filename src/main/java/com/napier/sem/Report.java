@@ -6,7 +6,7 @@ package com.napier.sem;
 abstract public class Report {
 
     abstract ReportType getReportType(); // abstract method which classes must override. Returns report type
-    public enum ReportType{CountryReport, CityReport} //enum for Report type
+    public enum ReportType{CountryReport, CityReport, CapitalCityReport, PopulationReport} //enum for Report type
 
     /**
      * Abstract subclass which models a report item
