@@ -200,4 +200,13 @@ public class AppIntegrationTest
         assertEquals("Antigua and Barbuda", i.get_country());
     }
 
+    @Test
+    void testReportTwentyFive()
+    {
+        ArrayList<PopulationReport.PopulationReportItem> r = app.getReportTwentyFive();
+
+        PopulationReport.PopulationReportItem i = r.get(0);
+        assertEquals("Afghanistan", i.get_name());
+    }
+
 }

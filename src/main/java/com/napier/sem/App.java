@@ -736,5 +736,33 @@ public class App {
 
         return null;
     }
+
+    @RequestMapping("report_twenty_five")
+    protected ArrayList<PopulationReport.PopulationReportItem> getReportTwentyFive()  // REPORT 25
+    {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect = "";
+            ResultSet rset = null;
+
+            strSelect = "select country.name, country.population, country.population-sum(city.population) as 'pop not in city', ((country.population-sum(city.population))/country.population)*100 as '%', country.population - (country.population-sum(city.population)) as 'pop in city', ((country.population - (country.population-sum(city.population)))/country.population)*100 as '%' from country country join city city on country.code = city.countrycode where city.countrycode = country.code GROUP BY country.name, country.population ORDER BY country.name;";
+            rset = stmt.executeQuery(strSelect);
+
+            PopulationReport report = new PopulationReport();
+
+            // Loop on result set and add report items to report
+            while (rset.next()) {
+
+                PopulationReport.PopulationReportItem item = report.new PopulationReportItem(rset.getString(1), rset.getInt(2), rset.getInt(3), rset.getDouble(4), rset.getInt(5), rset.getDouble(6));
+                report.addItemToReport(item);
+            }
+            return report.get_reportsItems();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+
+
+    }
 }
 
