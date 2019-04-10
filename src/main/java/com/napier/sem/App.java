@@ -85,8 +85,19 @@ public class App {
         }
     }
 
+    /*This is report one and it is designed to produce a report of all the countries in the world organised by
+    the smallest population to the largest. Firstly we use a try statement and then we try and call the report, this is done
+    by calling on the array list which holds the 'CountryReport' which is what we need to call upon the correct fields from the database.
+    This report gives us access to the 'country' table which we can use to combine that table with the 'city' table and then produce
+    the necessary report. After we have intialised the report we then do a sql statement which accesses the tables
+    we need. Firstly we call upon the code, name, continent, region and population from the country table, we then
+    join the city and country tables on the capital form the country report and the name from the city report.
+    This then allows us to see the name of a country's capital city instead of just the id. We then order the report
+    by the population of each country and then finish our sql statement. Finally we then create a new 'CountryReport'
+    and using this we get a string from that report which it sends back to us (these strings are just the code, name, region etc).
+    Once this has been completed we then return the report, however if the try statement fails then we catch this by sending back
+    an error report to the user, we then return null and then that is the end of the function.*/
     @RequestMapping("report_one")
-
     protected ArrayList<CountryReport.CountryReportItem> getReportOne() {
 
         // REPORT 1
