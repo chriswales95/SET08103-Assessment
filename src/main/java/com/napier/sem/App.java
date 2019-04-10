@@ -764,7 +764,7 @@ public class App {
             // Loop on result set and add report items to report
             while (rset.next()) {
 
-                PopulationReport.PopulationReportItem item = report.new PopulationReportItem(rset.getString(1), rset.getInt(2), rset.getInt(3), rset.getDouble(4), rset.getInt(5), rset.getDouble(6));
+                PopulationReport.PopulationReportItem item = report.new PopulationReportItem(rset.getString(1), rset.getInt(2), rset.getInt(3), rset.getFloat(4), rset.getInt(5), rset.getFloat(6));
                 report.addItemToReport(item);
             }
             return report.get_reportsItems();
