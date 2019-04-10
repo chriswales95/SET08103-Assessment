@@ -64,8 +64,6 @@ public class App {
         }
     }
 
-
-
     protected static void printReport(Report report) {
 
         if (report instanceof CountryReport) {
@@ -170,7 +168,7 @@ public class App {
         return null;
     }
 
-    @RequestMapping("r4")
+    @RequestMapping("report_four")
     protected ArrayList<CountryReport.CountryReportItem> getReportFour(@RequestParam(value = "number") String number) {
         // REPORT 4
 
@@ -226,7 +224,7 @@ public class App {
         return null;
     }
 
-    @RequestMapping("r6")
+    @RequestMapping("report_six")
     protected ArrayList<CountryReport.CountryReportItem> getReportSix(@RequestParam(value = "region") String region, @RequestParam(value = "number") String number) {
         // REPORT 6
 
@@ -255,7 +253,7 @@ public class App {
         return null;
     }
 
-    @RequestMapping("r7")
+    @RequestMapping("report_seven")
     protected ArrayList<CityReport.CityReportItem> getReportSeven() {
 
         // REPORT 7
@@ -282,7 +280,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportEight(String continent) {
+    @RequestMapping("report_eight")
+    protected ArrayList<CityReport.CityReportItem> getReportEight(@RequestParam(value = "continent") String continent) {
 
         // REPORT 8
         try {
@@ -308,7 +307,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportNine(String region) {
+    @RequestMapping("report_nine")
+    protected ArrayList<CityReport.CityReportItem> getReportNine(@RequestParam(value = "region") String region) {
 
         // REPORT 9
         try {
@@ -333,7 +333,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportTen(String country) {
+    @RequestMapping("report_ten")
+    protected ArrayList<CityReport.CityReportItem> getReportTen(@RequestParam(value = "country") String country) {
 
         // REPORT 10
         try {
@@ -359,7 +360,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportEleven(String district) {
+    @RequestMapping("report_eleven")
+    protected ArrayList<CityReport.CityReportItem> getReportEleven(@RequestParam(value = "district") String district) {
 
         // REPORT 11
         try {
@@ -384,7 +386,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportTwelve(int num)  // REPORT 12
+    @RequestMapping("report_twelve")
+    protected ArrayList<CityReport.CityReportItem> getReportTwelve(@RequestParam(value = "number") int num)  // REPORT 12
     {
         try {
             String strSelect = "";
@@ -416,7 +419,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportThirteen(int num, String continent)  // REPORT 13
+    @RequestMapping("report_thirteen")
+    protected ArrayList<CityReport.CityReportItem> getReportThirteen(@RequestParam(value = "number")int num, @RequestParam(value = "continent")String continent)  // REPORT 13
     {
         try {
             String strSelect = "";
@@ -449,7 +453,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportFourteen(int num, String region)  // REPORT 14
+    @RequestMapping("report_Fourteen")
+    protected ArrayList<CityReport.CityReportItem> getReportFourteen(@RequestParam(value = "number") int num, @RequestParam(value = "region") String region)  // REPORT 14
     {
         try
         {
@@ -483,7 +488,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportFifteen(int num, String country)  // REPORT 15
+    @RequestMapping("report_fifteen")
+    protected ArrayList<CityReport.CityReportItem> getReportFifteen(@RequestParam(value = "number") int num, @RequestParam(value = "country") String country)  // REPORT 15
     {
         try
         {
@@ -517,7 +523,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportSixteen(int num, String district)  // REPORT 16
+    @RequestMapping("report_sixteen")
+    protected ArrayList<CityReport.CityReportItem> getReportSixteen(@RequestParam(value = "number") int num, @RequestParam(value = "district") String district)  // REPORT 16
     {
         try
         {
@@ -551,6 +558,7 @@ public class App {
         return null;
     }
 
+    @RequestMapping("report_seventeen")
     protected ArrayList<CityReport.CityReportItem> getReportSeventeen() {
 
         // REPORT 17
@@ -577,7 +585,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportEighteen(String continent)  // REPORT 18
+    @RequestMapping("report_eighteen")
+    protected ArrayList<CityReport.CityReportItem> getReportEighteen(@RequestParam(value = "continent") String continent)  // REPORT 18
     {
         try {
             String strSelect = "";
@@ -605,7 +614,8 @@ public class App {
         return null;
     }
 
-    protected ArrayList<CityReport.CityReportItem> getReportNineteen(String region)  // REPORT 19
+    @RequestMapping("report_nineteen")
+    protected ArrayList<CityReport.CityReportItem> getReportNineteen(@RequestParam(value = "region") String region)  // REPORT 19
     {
         try {
             String strSelect = "";
@@ -631,6 +641,128 @@ public class App {
         }
 
         return null;
+    }
+
+    @RequestMapping("report_twenty")
+    protected ArrayList<CityReport.CityReportItem> getReportTwenty(@RequestParam(value = "number") String number)  // REPORT 20
+    {
+        try {
+            String strSelect = "";
+            ResultSet rset = null;
+
+            int num = Integer.parseInt(number);
+            strSelect =
+                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital order by city.population DESC LIMIT ?;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setInt(1, num);
+
+            rset = preparedStatement.executeQuery();
+            CityReport report = new CityReport();
+
+            while (rset.next()) {
+                CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
+                report.addItemToReport(item);
+            }
+
+            return report.get_reportsItems();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
+
+    @RequestMapping("report_twenty_one")
+    protected ArrayList<CityReport.CityReportItem> getReportTwentyOne(@RequestParam(value = "continent") String continent, @RequestParam(value = "number") String number)  // REPORT 21
+    {
+        try {
+            String strSelect = "";
+            ResultSet rset = null;
+
+            int num = Integer.parseInt(number);
+            strSelect =
+                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital where continent= ? order by city.population DESC LIMIT ?;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setString(1, continent);
+            preparedStatement.setInt(2, num);
+
+
+            rset = preparedStatement.executeQuery();
+            CityReport report = new CityReport();
+
+            while (rset.next()) {
+                CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
+                report.addItemToReport(item);
+            }
+
+            return report.get_reportsItems();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
+
+    @RequestMapping("report_twenty_two")
+    protected ArrayList<CityReport.CityReportItem> getReportTwentyTwo(@RequestParam(value = "region") String region, @RequestParam(value = "number") String number)  // REPORT 22
+    {
+        try {
+            String strSelect = "";
+            ResultSet rset = null;
+
+            int num = Integer.parseInt(number);
+            strSelect =
+                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital where region= ? order by city.population DESC LIMIT ?;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setString(1, region);
+            preparedStatement.setInt(2, num);
+
+
+            rset = preparedStatement.executeQuery();
+            CityReport report = new CityReport();
+
+            while (rset.next()) {
+                CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
+                report.addItemToReport(item);
+            }
+
+            return report.get_reportsItems();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
+
+    @RequestMapping("report_twenty_five")
+    protected ArrayList<PopulationReport.PopulationReportItem> getReportTwentyFive()  // REPORT 25
+    {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect = "";
+            ResultSet rset = null;
+
+            strSelect = "select country.name, country.population, country.population-sum(city.population) as 'pop not in city', ((country.population-sum(city.population))/country.population)*100 as '%', country.population - (country.population-sum(city.population)) as 'pop in city', ((country.population - (country.population-sum(city.population)))/country.population)*100 as '%' from country country join city city on country.code = city.countrycode where city.countrycode = country.code GROUP BY country.name, country.population ORDER BY country.name;";
+            rset = stmt.executeQuery(strSelect);
+
+            PopulationReport report = new PopulationReport();
+
+            // Loop on result set and add report items to report
+            while (rset.next()) {
+
+                PopulationReport.PopulationReportItem item = report.new PopulationReportItem(rset.getString(1), rset.getInt(2), rset.getInt(3), rset.getDouble(4), rset.getInt(5), rset.getDouble(6));
+                report.addItemToReport(item);
+            }
+            return report.get_reportsItems();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+
+
     }
 }
 
