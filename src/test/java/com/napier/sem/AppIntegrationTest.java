@@ -201,12 +201,21 @@ public class AppIntegrationTest
     }
 
     @Test
+    void testReportTwentyFour()
+    {
+        ArrayList<PopulationReport.PopulationReportItem> r = app.getReportTwentyFour();
+
+        PopulationReport.PopulationReportItem i = r.get(0);
+        assertEquals("Caribbean", i.get_name());
+    }
+
+    @Test
     void testReportTwentyFive()
     {
         ArrayList<PopulationReport.PopulationReportItem> r = app.getReportTwentyFive();
 
         PopulationReport.PopulationReportItem i = r.get(0);
-        assertEquals("Afghanistan", i.get_name());
+        assertEquals(20387900, i.get_popNotInCity());
     }
 
 }

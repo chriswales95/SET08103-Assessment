@@ -737,6 +737,33 @@ public class App {
         return null;
     }
 
+    @RequestMapping("report_twenty_four")
+    protected ArrayList<PopulationReport.PopulationReportItem> getReportTwentyFour()  // REPORT 24
+    {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect = "";
+            ResultSet rset = null;
+
+            strSelect = "Select country.region, SUM(country.population) as regionPopulation, SUM((select SUM(population) from city where countrycode = country.code)) AS popInCity, (SUM((select SUM(population) from city where countrycode = country.code)) / SUM(country.population))*100 as percentInCities , (sum(country.population)-SUM((select SUM(population) from city where countrycode = country.code))) as popNotInCity, ((sum(country.population)-SUM((select SUM(population) from city where countrycode = country.code))) / SUM(country.population))*100 as percentNotInCities from country GROUP BY country.region;";
+            rset = stmt.executeQuery(strSelect);
+
+            PopulationReport report = new PopulationReport();
+
+            // Loop on result set and add report items to report
+            while (rset.next()) {
+
+                PopulationReport.PopulationReportItem item = report.new PopulationReportItem(rset.getString(1), rset.getInt(2), rset.getInt(3), rset.getFloat(4), rset.getInt(5), rset.getFloat(6));
+                report.addItemToReport(item);
+            }
+            return report.get_reportsItems();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+
+    }
+
     @RequestMapping("report_twenty_five")
     protected ArrayList<PopulationReport.PopulationReportItem> getReportTwentyFive()  // REPORT 25
     {
@@ -761,7 +788,6 @@ public class App {
             System.out.println(e.getMessage());
         }
         return null;
-
 
     }
 }
