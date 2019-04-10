@@ -40,12 +40,12 @@ public class App {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            System.out.println("Could not load SQL driver"); //If unable to load driver, give error
+            System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
 
         int retries = 10;
-        for (int i = 0; i < retries; ++i) { //Tries to connect 10 times
+        for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database...");
             try {
                 Thread.sleep(30000);
@@ -64,21 +64,22 @@ public class App {
         }
     }
 
-    protected static void printReport(Report report) { //Method to print the report
+    protected static void printReport(Report report) {
 
-        if (report instanceof CountryReport) { //If it's a Country Report...
+        if (report instanceof CountryReport) {
             CountryReport.printReportHeader();
 
-            for (CountryReport.CountryReportItem item : ((CountryReport) report).get_reportsItems()) { //Get the items from the report
-                System.out.printf(CountryReport.getReportFormat(), item.get_code(), item.get_name(), item.get_continent(), item.get_region(), item.get_population(), item.get_capital()); //Print, in the country report format, each of the items
+            for (CountryReport.CountryReportItem item : ((CountryReport) report).get_reportsItems()) {
+                System.out.printf(
+                        CountryReport.getReportFormat(), item.get_code(), item.get_name(), item.get_continent(), item.get_region(), item.get_population(), item.get_capital());
                 System.out.print("\n");
             }
         }
 
-        if (report instanceof CityReport){ //Alternatively, if it's not a Country report, check if it's a City Report...
+        if (report instanceof CityReport){
             CityReport.printReportHeader();
-            for(CityReport.CityReportItem item : ((CityReport) report).get_reportsItems()){ //Get the items from the report
-                System.out.printf(CityReport.getReportFormat(), item.get_name(), item.get_country(), item.get_district(), item.get_population()); //Print, in the city report format, each of the items
+            for(CityReport.CityReportItem item : ((CityReport) report).get_reportsItems()){
+                System.out.printf(CityReport.getReportFormat(), item.get_name(), item.get_country(), item.get_district(), item.get_population());
                 System.out.print("\n");
             }
         }
@@ -95,18 +96,17 @@ public class App {
             ResultSet rset = null;
 
             strSelect =
-                    "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC;"; //SQL command for the report
+                    "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC;";
             rset = stmt.executeQuery(strSelect);
 
-            CountryReport report = new CountryReport(); //Creates a new CountryReport called report
+            CountryReport report = new CountryReport();
 
-            // Loops on result set to add report items to report
+            // Loop on result set and add report items to report
             while (rset.next()) {
                 CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
             return report.get_reportsItems();
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -122,21 +122,20 @@ public class App {
             ResultSet rset = null;
 
             strSelect =
-                    "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where continent = ? order by population DESC;"; //SQL command for the report
+                    "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where continent = ? order by population DESC;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, continent);
 
             rset = preparedStatement.executeQuery();
-            CountryReport report = new CountryReport(); //Creates a new CountryReport called report
+            CountryReport report = new CountryReport();
 
             // Loop on result set and add report items to report
             while (rset.next()) {
                 CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
             return report.get_reportsItems();
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -151,21 +150,18 @@ public class App {
             String strSelect = "";
             ResultSet rset = null;
 
-            strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where region = ? order by population DESC;"; //SQL command for the report
+            strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where region = ? order by population DESC;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, region);
 
             rset = preparedStatement.executeQuery();
-            CountryReport report = new CountryReport(); //Creates a new CountryReport called report
-
-            // Loop on result set and add report items to report
+            CountryReport report = new CountryReport();
             while (rset.next()) {
                 CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
             return report.get_reportsItems();
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -181,21 +177,18 @@ public class App {
             String strSelect = "";
             ResultSet rset = null;
 
-            strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC LIMIT ?;"; //SQL command for the report
+            strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC LIMIT ?;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setInt(1, num);
 
             rset = preparedStatement.executeQuery();
-            CountryReport report = new CountryReport(); //Creates a new CountryReport called report
-
-            // Loop on result set and add report items to report
+            CountryReport report = new CountryReport();
             while (rset.next()) {
                 CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
             return report.get_reportsItems();
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -212,22 +205,19 @@ public class App {
             ResultSet rset = null;
 
 
-            strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where continent = ? order by population DESC LIMIT ?;"; //SQL command for the report
+            strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where continent = ? order by population DESC LIMIT ?;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, continent);
             preparedStatement.setInt(2, num);
 
             rset = preparedStatement.executeQuery();
-            CountryReport report = new CountryReport(); //Creates a new CountryReport called report
-
-            // Loop on result set and add report items to report
+            CountryReport report = new CountryReport();
             while (rset.next()) {
                 CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
             return report.get_reportsItems();
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -244,22 +234,19 @@ public class App {
             String strSelect = "";
             ResultSet rset = null;
 
-            strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where region = ? order by population DESC LIMIT ?;"; //SQL command for the report
+            strSelect = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id where region = ? order by population DESC LIMIT ?;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, region);
             preparedStatement.setInt(2, num);
 
             rset = preparedStatement.executeQuery();
-            CountryReport report = new CountryReport(); //Creates a new CountryReport called report
-
-            // Loop on result set and add report items to report
+            CountryReport report = new CountryReport();
             while (rset.next()) {
                 CountryReport.CountryReportItem item = report.new CountryReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
             return report.get_reportsItems();
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -276,18 +263,17 @@ public class App {
             ResultSet rset = null;
 
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code order by city.population DESC;"; //SQL command for the report
+                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code order by city.population DESC;";
             rset = stmt.executeQuery(strSelect);
 
-            CityReport report = new CityReport(); //Creates a new CityReport called report
+            CityReport report = new CityReport();
 
             // Loop on result set and add report items to report
             while (rset.next()) {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
             return report.get_reportsItems();
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -301,21 +287,20 @@ public class App {
         try {
 
             ResultSet rset = null;
-            String select = "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where country.continent = ? order by city.population DESC;"; //SQL command for the report
+            String select = "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where country.continent = ? order by city.population DESC;";
 
             PreparedStatement preparedStatement = con.prepareStatement(select);
             preparedStatement.setString(1, continent);
             rset = preparedStatement.executeQuery();
 
-            CityReport report = new CityReport(); //Creates a new CityReport called report
+            CityReport report = new CityReport();
 
             // Loop on result set and add report items to report
             while (rset.next()) {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
             return report.get_reportsItems();
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -329,22 +314,19 @@ public class App {
         try {
 
             ResultSet rset = null;
-            String select = "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where country.region = ? order by city.population DESC;"; //SQL command for the report
+            String select = "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where country.region = ? order by city.population DESC;";
 
             PreparedStatement preparedStatement = con.prepareStatement(select);
             preparedStatement.setString(1, region);
             rset = preparedStatement.executeQuery();
 
-            CityReport report = new CityReport(); //Creates a new CityReport called report
-
-            // Loop on result set and add report items to report
+            CityReport report = new CityReport();
             while (rset.next()){
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
 
             return report.get_reportsItems();
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -360,20 +342,18 @@ public class App {
             ResultSet rset = null;
 
             String select =
-                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where country.name = ? order by city.population DESC;"; //SQL command for the report
+                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where country.name = ? order by city.population DESC;";
             PreparedStatement preparedStatement = con.prepareStatement(select);
             preparedStatement.setString(1, country);
-
             rset = preparedStatement.executeQuery();
-            CityReport report = new CityReport(); //Creates a new CityReport called report
+            CityReport report = new CityReport();
 
             // Loop on result set and add report items to report
             while (rset.next()) {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
             return report.get_reportsItems();
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -388,17 +368,16 @@ public class App {
             ResultSet rset = null;
 
             String select =
-                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where district = ? order by city.population DESC;"; //SQL command for the report
+                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where district = ? order by city.population DESC;";
             PreparedStatement preparedStatement = con.prepareStatement(select);
             preparedStatement.setString(1, district);
-
             rset = preparedStatement.executeQuery();
-            CityReport report = new CityReport(); //Creates a new CityReport called report
+            CityReport report = new CityReport();
 
             // Loop on result set and add report items to report
             while (rset.next()) {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
             return report.get_reportsItems();
         } catch (SQLException e) {
@@ -415,19 +394,18 @@ public class App {
             ResultSet rset = null;
 
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code order by city.population DESC LIMIT ?;"; //SQL command for the report
+                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code order by city.population DESC LIMIT ?;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setInt(1, num);
 
             rset = preparedStatement.executeQuery();
-            CityReport report = new CityReport(); //Creates a new CityReport called report
+            CityReport report = new CityReport();
 
-            // Loop on result set and add report items to report
             while (rset.next())
             {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
 
             return report.get_reportsItems();
@@ -449,20 +427,19 @@ public class App {
             ResultSet rset = null;
 
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where continent = ? order by city.population DESC LIMIT ?;"; //SQL command for the report
+                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where continent = ? order by city.population DESC LIMIT ?;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, continent);
             preparedStatement.setInt(2, num);
 
             rset = preparedStatement.executeQuery();
-            CityReport report = new CityReport(); //Creates a new CityReport called report
+            CityReport report = new CityReport();
 
-            // Loop on result set and add report items to report
             while (rset.next())
             {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
 
             return report.get_reportsItems();
@@ -485,20 +462,19 @@ public class App {
             ResultSet rset = null;
 
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where region = ? order by city.population DESC LIMIT ?;"; //SQL command for the report
+                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where region = ? order by city.population DESC LIMIT ?;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, region);
             preparedStatement.setInt(2, num);
 
             rset = preparedStatement.executeQuery();
-            CityReport report = new CityReport(); //Creates a new CityReport called report
+            CityReport report = new CityReport();
 
-            // Loop on result set and add report items to report
             while (rset.next())
             {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
 
             return report.get_reportsItems();
@@ -521,20 +497,19 @@ public class App {
             ResultSet rset = null;
 
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where country.name = ? order by city.population DESC LIMIT ?;"; //SQL command for the report
+                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where country.name = ? order by city.population DESC LIMIT ?;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, country);
             preparedStatement.setInt(2, num);
 
             rset = preparedStatement.executeQuery();
-            CityReport report = new CityReport(); //Creates a new CityReport called report
+            CityReport report = new CityReport();
 
-            // Loop on result set and add report items to report
             while (rset.next())
             {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
 
             return report.get_reportsItems();
@@ -557,20 +532,19 @@ public class App {
             ResultSet rset = null;
 
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where city.district = ? order by city.population DESC LIMIT ?;"; //SQL command for the report
+                    "select city.name, country.name, city.district, city.population from city city join country country on CountryCode=code where city.district = ? order by city.population DESC LIMIT ?;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, district);
             preparedStatement.setInt(2, num);
 
             rset = preparedStatement.executeQuery();
-            CityReport report = new CityReport(); //Creates a new CityReport called report
+            CityReport report = new CityReport();
 
-            // Loop on result set and add report items to report
             while (rset.next())
             {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
 
             return report.get_reportsItems();
@@ -594,15 +568,15 @@ public class App {
             ResultSet rset = null;
 
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital order by city.population DESC;"; //SQL command for the report
+                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital order by city.population DESC;";
             rset = stmt.executeQuery(strSelect);
 
-            CityReport report = new CityReport(); //Creates a new CityReport called report
+            CityReport report = new CityReport();
 
             // Loop on result set and add report items to report
             while (rset.next()) {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
             return report.get_reportsItems();
         } catch (SQLException e) {
@@ -619,18 +593,17 @@ public class App {
             ResultSet rset = null;
 
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital where continent = ? order by city.population DESC;;"; //SQL command for the report
+                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital where continent = ? order by city.population DESC;;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, continent);
 
             rset = preparedStatement.executeQuery();
-            CityReport report = new CityReport(); //Creates a new CityReport called report
+            CityReport report = new CityReport();
 
-            // Loop on result set and add report items to report
             while (rset.next()) {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
 
             return report.get_reportsItems();
@@ -649,18 +622,17 @@ public class App {
             ResultSet rset = null;
 
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital where region = ? order by city.population DESC;;"; //SQL command for the report
+                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital where region = ? order by city.population DESC;;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, region);
 
             rset = preparedStatement.executeQuery();
-            CityReport report = new CityReport(); //Creates a new CityReport called report
+            CityReport report = new CityReport();
 
-            // Loop on result set and add report items to report
             while (rset.next()) {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
 
             return report.get_reportsItems();
@@ -680,18 +652,17 @@ public class App {
 
             int num = Integer.parseInt(number);
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital order by city.population DESC LIMIT ?;"; //SQL command for the report
+                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital order by city.population DESC LIMIT ?;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setInt(1, num);
 
             rset = preparedStatement.executeQuery();
-            CityReport report = new CityReport(); //Creates a new CityReport called report
+            CityReport report = new CityReport();
 
-            // Loop on result set and add report items to report
             while (rset.next()) {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
 
             return report.get_reportsItems();
@@ -711,19 +682,19 @@ public class App {
 
             int num = Integer.parseInt(number);
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital where continent= ? order by city.population DESC LIMIT ?;"; //SQL command for the report
+                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital where continent= ? order by city.population DESC LIMIT ?;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, continent);
             preparedStatement.setInt(2, num);
 
-            rset = preparedStatement.executeQuery();
-            CityReport report = new CityReport(); //Creates a new CityReport called report
 
-            // Loop on result set and add report items to report
+            rset = preparedStatement.executeQuery();
+            CityReport report = new CityReport();
+
             while (rset.next()) {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
 
             return report.get_reportsItems();
@@ -743,19 +714,19 @@ public class App {
 
             int num = Integer.parseInt(number);
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital where region= ? order by city.population DESC LIMIT ?;"; //SQL command for the report
+                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital where region= ? order by city.population DESC LIMIT ?;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, region);
             preparedStatement.setInt(2, num);
 
-            rset = preparedStatement.executeQuery();
-            CityReport report = new CityReport(); //Creates a new CityReport called report
 
-            // Loop on result set and add report items to report
+            rset = preparedStatement.executeQuery();
+            CityReport report = new CityReport();
+
             while (rset.next()) {
                 CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
 
             return report.get_reportsItems();
@@ -777,12 +748,13 @@ public class App {
             strSelect = "select country.name, country.population, country.population-sum(city.population) as 'pop not in city', ((country.population-sum(city.population))/country.population)*100 as '%', country.population - (country.population-sum(city.population)) as 'pop in city', ((country.population - (country.population-sum(city.population)))/country.population)*100 as '%' from country country join city city on country.code = city.countrycode where city.countrycode = country.code GROUP BY country.name, country.population ORDER BY country.name;";
             rset = stmt.executeQuery(strSelect);
 
-            PopulationReport report = new PopulationReport(); //Creates a new Population Report called report
+            PopulationReport report = new PopulationReport();
 
             // Loop on result set and add report items to report
             while (rset.next()) {
+
                 PopulationReport.PopulationReportItem item = report.new PopulationReportItem(rset.getString(1), rset.getInt(2), rset.getInt(3), rset.getDouble(4), rset.getInt(5), rset.getDouble(6));
-                report.addItemToReport(item); //Keep adding until there is nothing left to add
+                report.addItemToReport(item);
             }
             return report.get_reportsItems();
         } catch (SQLException e) {
