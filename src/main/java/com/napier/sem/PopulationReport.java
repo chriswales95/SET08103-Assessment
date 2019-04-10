@@ -21,12 +21,12 @@ public class PopulationReport extends Report {
 
 
     class PopulationReportItem extends ReportItem {
-        private int _popNotInCity;
-        private int _popInCity;
+        private long _popNotInCity;
+        private long _popInCity;
         private float _popNotInCityPercentage;
         private float _popInCityPercentage;
 
-        public PopulationReportItem(String name, int population, int popNotInCity, float popNotInCityPercentage, int popInCity, float popInCityPercentage) {
+        public PopulationReportItem(String name, long population, long popNotInCity, float popNotInCityPercentage, long popInCity, float popInCityPercentage) {
             this.set_name(name);
             this.set_population(population);
             this._popInCity = popInCity;
@@ -35,19 +35,19 @@ public class PopulationReport extends Report {
             this._popNotInCityPercentage = popNotInCityPercentage;
         }
 
-        public int get_popNotInCity() {
+        public long get_popNotInCity() {
             return _popNotInCity;
         }
 
-        public void set_popNotInCity(int _popNotInCity) {
+        public void set_popNotInCity(long _popNotInCity) {
             this._popNotInCity = _popNotInCity;
         }
 
-        public int get_popInCity() {
+        public long get_popInCity() {
             return _popInCity;
         }
 
-        public void set_popInCity(int _popInCity) {
+        public void set_popInCity(long _popInCity) {
             this._popInCity = _popInCity;
         }
 
@@ -63,8 +63,8 @@ public class PopulationReport extends Report {
             return _popInCityPercentage;
         }
 
-        public void set_popinCityyPercentage(float _popinCityyPercentage) {
-            this._popInCityPercentage = _popinCityyPercentage;
+        public void set_popinCityyPercentage(float _popInCityyPercentage) {
+            this._popInCityPercentage = _popInCityyPercentage;
         }
     }
 }

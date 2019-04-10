@@ -233,7 +233,7 @@ public class AppIntegrationTest
         ArrayList<TotalPopulationReport.TotalPopulationReportItem> r = app.getReportTwentySix();
 
         TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
-        assertEquals(60787494, i.get_population());
+        assertEquals(6078749450L, i.get_population());
     }
 
 }
