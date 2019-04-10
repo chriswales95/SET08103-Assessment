@@ -23,16 +23,16 @@ public class PopulationReport extends Report {
     class PopulationReportItem extends ReportItem {
         private int _popNotInCity;
         private int _popInCity;
-        private double _popNotInCityPercentage;
-        private double _popinCityyPercentage;
+        private float _popNotInCityPercentage;
+        private float _popInCityPercentage;
 
-        public PopulationReportItem(String name, int population, int popNotInCity, double popNotInCityPercentage, int popInCity, double popInCityPercentage) {
+        public PopulationReportItem(String name, int population, int popNotInCity, float popNotInCityPercentage, int popInCity, float popInCityPercentage) {
             this.set_name(name);
             this.set_population(population);
-            this._popNotInCity = popInCity;
+            this._popInCity = popInCity;
             this._popNotInCity = popNotInCity;
-            this._popinCityyPercentage = popInCityPercentage;
-            this._popinCityyPercentage = popNotInCityPercentage;
+            this._popInCityPercentage = popInCityPercentage;
+            this._popNotInCityPercentage = popNotInCityPercentage;
         }
 
         public int get_popNotInCity() {
@@ -55,16 +55,16 @@ public class PopulationReport extends Report {
             return _popNotInCityPercentage;
         }
 
-        public void set_popNotInCityPercentage(double _popNotInCityPercentage) {
+        public void set_popNotInCityPercentage(float _popNotInCityPercentage) {
             this._popNotInCityPercentage = _popNotInCityPercentage;
         }
 
-        public double get_popinCityyPercentage() {
-            return _popinCityyPercentage;
+        public float get_popinCityyPercentage() {
+            return _popInCityPercentage;
         }
 
-        public void set_popinCityyPercentage(double _popinCityyPercentage) {
-            this._popinCityyPercentage = _popinCityyPercentage;
+        public void set_popinCityyPercentage(float _popinCityyPercentage) {
+            this._popInCityPercentage = _popinCityyPercentage;
         }
     }
 }
