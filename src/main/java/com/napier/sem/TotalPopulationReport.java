@@ -22,7 +22,8 @@ public class TotalPopulationReport extends Report {
 
     class TotalPopulationReportItem extends ReportItem {
 
-        public TotalPopulationReportItem(int population) {
+        public TotalPopulationReportItem(String name, long population) {
+            this.set_name(name);
             this.set_population(population);
         }
     }

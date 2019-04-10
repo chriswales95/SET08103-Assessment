@@ -14,7 +14,7 @@ abstract public class Report {
     abstract class ReportItem{
 
         private String _name; // country name which appears on most reports
-        private int _population; // population which appears on most reports
+        private long _population; // population which appears on most reports
 
         /**
          * Method to return name
@@ -36,7 +36,7 @@ abstract public class Report {
          * method to get population
          * @return population
          */
-        public int get_population() {
+        public long get_population() {
             return _population;
         }
 
@@ -44,7 +44,7 @@ abstract public class Report {
          * method to set population
          * @param _population
          */
-        public void set_population(int _population) {
+        public void set_population(long _population) {
             this._population = _population;
         }
     }

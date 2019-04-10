@@ -846,7 +846,7 @@ public class App {
             // Loop on result set and add report items to report
             while (rset.next()) {
 
-                PopulationReport.PopulationReportItem item = report.new PopulationReportItem(rset.getString(1), rset.getInt(2), rset.getInt(3), rset.getFloat(4), rset.getInt(5), rset.getFloat(6));
+                PopulationReport.PopulationReportItem item = report.new PopulationReportItem(rset.getString(1), rset.getLong(2), rset.getLong(3), rset.getFloat(4), rset.getLong(5), rset.getFloat(6));
                 report.addItemToReport(item);
             }
             return report.get_reportsItems();
@@ -927,7 +927,7 @@ public class App {
             // Loop on result set and add report items to report
             while (rset.next()) {
 
-                TotalPopulationReport.TotalPopulationReportItem item = report.new TotalPopulationReportItem(rset.getInt(1));
+                TotalPopulationReport.TotalPopulationReportItem item = report.new TotalPopulationReportItem("World Population", rset.getLong(1));
                 report.addItemToReport(item);
             }
             return report.get_reportsItems();
