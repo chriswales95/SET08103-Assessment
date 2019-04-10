@@ -201,6 +201,15 @@ public class AppIntegrationTest
     }
 
     @Test
+    void testReportTwentyThree()
+    {
+        ArrayList<PopulationReport.PopulationReportItem> r = app.getReportTwentyThree();
+
+        PopulationReport.PopulationReportItem i = r.get(0);
+        assertEquals("North America", i.get_name());
+    }
+
+    @Test
     void testReportTwentyFour()
     {
         ArrayList<PopulationReport.PopulationReportItem> r = app.getReportTwentyFour();
