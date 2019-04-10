@@ -227,4 +227,13 @@ public class AppIntegrationTest
         assertEquals(20387900, i.get_popNotInCity());
     }
 
+    @Test
+    void testReportTwentySix()
+    {
+        ArrayList<TotalPopulationReport.TotalPopulationReportItem> r = app.getReportTwentySix();
+
+        TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
+        assertEquals(60787494, i.get_population());
+    }
+
 }
