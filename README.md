@@ -40,7 +40,7 @@ Team assessment for SET08103 Software Engineering Methods
 | 24 | The population of people, people living in cities, and people not living in cities in each region. | Yes  |  |
 | 25 | The population of people, people living in cities, and people not living in cities in each country. | Yes |  |
 | 26 | The population of the world. | Yes  |  |
-| 27 | The population of a continent. |  |  |
+| 27 | The population of a continent. | Yes |  |
 | 28 | The population of a country. |  |  |
 | 29 | The population of a district. |  |  |
 | 30 | The population of a city. |  |  |
