@@ -292,6 +292,20 @@ public class App {
         return null;
     }
 
+    /*This is report six and it is designed to produce a report of the top N populated countries in a region where N is provided by
+    the user. Firstly, we need parameters passed into the function named 'region' and 'number', the user will provide these when entering the url
+    which will allow us to refine our report down to the select amount of countries we require from the selected region. We then use a try statement and then we try and call the report,
+    this is done by calling on the array list which holds the 'CountryReport' which is what we need to call upon the correct fields from the database.
+    This report gives us access to the 'country' table which we can use to combine that table with the 'city' table and then produce the necessary report.
+    After we have intialised the report we then do a sql statement which accesses the tables we need.
+    Firstly we call upon the code, name, continent, region and population from the country table, we then join the city and country tables on the capital
+    form the country report and the name from the city report. This then allows us to see the name of a country's capital city instead of just the id.
+    We then state to the sql that we do not know the region or the number that we are refining down to so we use question marks to tell the statement this, we then order the report
+    by the population of each country and then finish our sql statement. Next we must prepare the statement by telling it we have parameters
+    named 'region' and 'number' and which parameter it is (in this case 1 and 2). Finally we then create a new 'CountryReport'
+    and using this we get a string from that report which it sends back to us (these strings are just the code, name, region etc).
+    Once this has been completed we then return the report, however if the try statement fails then we catch this by sending back
+    an error report to the user, we then return null and then that is the end of the function.*/
     @RequestMapping("report_six")
     protected ArrayList<CountryReport.CountryReportItem> getReportSix(@RequestParam(value = "region") String region, @RequestParam(value = "number") String number) {
         // REPORT 6
