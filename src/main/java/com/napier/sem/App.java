@@ -939,7 +939,7 @@ public class App {
     }
 
     @RequestMapping("report_twenty_seven")
-    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportTwentySeven(@RequestParam(value = "continent") String continent)  // REPORT 26
+    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportTwentySeven(@RequestParam(value = "continent") String continent)  // REPORT 27
     {
         try {
             Statement stmt = con.createStatement();
@@ -958,7 +958,7 @@ public class App {
             // Loop on result set and add report items to report
             while (rset.next()) {
 
-                TotalPopulationReport.TotalPopulationReportItem item = report.new TotalPopulationReportItem(continent + "Population", rset.getLong(1));
+                TotalPopulationReport.TotalPopulationReportItem item = report.new TotalPopulationReportItem("Continent Population", rset.getLong(1));
                 report.addItemToReport(item);
             }
             return report.get_reportsItems();
