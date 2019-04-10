@@ -11,9 +11,9 @@ Team assessment for SET08103 Software Engineering Methods
 
 - Release [![Releases](https://img.shields.io/github/release/chriswales95/SET08103-Assessment/all.svg?style=flat-square)](https://github.com/kevin-chalmers/sem/releases)
 
-| | | | |
-| --- | --- | --- | --- |
+
 | ID | Name | Met | Screenshot |
+| --- | --- | --- | --- |
 | 1 | All the countries in the world organised by largest population to smallest. | Yes |  |
 | 2 | All the countries in a continent organised by largest population to smallest. | Yes |  |
 | 3 | All the countries in a region organised by largest population to smallest. | Yes |  |
@@ -36,8 +36,8 @@ Team assessment for SET08103 Software Engineering Methods
 | 20 | The top N populated capital cities in the world where N is provided by the user. | Yes |  |
 | 21 | The top N populated capital cities in a continent where N is provided by the user. | Yes |  |
 | 22 | The top N populated capital cities in a region where N is provided by the user. | Yes |  |
-| 23 | The population of people, people living in cities, and people not living in cities in each continent. |  |  |
-| 24 | The population of people, people living in cities, and people not living in cities in each region. |  |  |
+| 23 | The population of people, people living in cities, and people not living in cities in each continent. | Yes |  |
+| 24 | The population of people, people living in cities, and people not living in cities in each region. | Yes  |  |
 | 25 | The population of people, people living in cities, and people not living in cities in each country. | Yes |  |
 | 26 | The population of the world. |  |  |
 | 27 | The population of a continent. |  |  |
