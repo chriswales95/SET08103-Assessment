@@ -12,6 +12,7 @@ Team assessment for SET08103 Software Engineering Methods
 - Release [![Releases](https://img.shields.io/github/release/chriswales95/SET08103-Assessment/all.svg?style=flat-square)](https://github.com/kevin-chalmers/sem/releases)
 
 | | | | |
+| --- | --- | --- | --- |
 | ID | Name | Met | Screenshot |
 | 1 |  |  |  |
 | 2 |  |  |  |
