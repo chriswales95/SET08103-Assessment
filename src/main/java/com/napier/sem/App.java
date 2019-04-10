@@ -947,6 +947,10 @@ public class App {
             ResultSet rset = null;
 
             strSelect = "SELECT sum(population) AS 'Continent Population' FROM country WHERE continent = ?;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setString(1, continent);
+
             rset = stmt.executeQuery(strSelect);
 
             TotalPopulationReport report = new TotalPopulationReport();
