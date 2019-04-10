@@ -21,7 +21,6 @@ public class TotalPopulationReport extends Report {
 
 
     class TotalPopulationReportItem extends ReportItem {
-        private int _Population;
 
         public TotalPopulationReportItem(int population) {
             this.set_population(population);
