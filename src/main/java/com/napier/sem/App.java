@@ -1071,7 +1071,7 @@ public class App {
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, continent);
 
-            rset = stmt.executeQuery(strSelect);
+            rset = preparedStatement.executeQuery();
 
             TotalPopulationReport report = new TotalPopulationReport();
 
