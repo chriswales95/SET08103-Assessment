@@ -457,6 +457,21 @@ public class App {
         return null;
     }
 
+    /*This is report eight and it is designed to produce a report of All the cities in a country organised by largest population to smallest.
+    Firstly, we need a parameter passed into the function named 'country', the user will provide this when entering the url
+    which will allow us to refine our report down to the cities in a country of the users choosing.
+    Then we use a try statement and then we try and call the report, this is done by calling on the array list which holds the 'CityReport'
+    which is what we need to call upon the correct fields from the database.
+    This report gives us access to the 'city' table which we can use to combine that table with the 'country' table and then produce
+    the necessary report. After we have intialised the report we then do a sql statement which accesses the tables
+    we need. Firstly we call upon the name, district and population from the city table and name from the country table, we then
+    join the city and country tables on the CountryCode form the city report and the code from the country report.
+    This then allows us to see the name of a city's country instead of just the id. We then state that the country is unkwnown so we make
+    'country' equal a question and then order the report by the population of each city and then finish our sql statement.
+    Next we must prepare the statement by telling it we have a parameter named 'country' and which parameter it is (in this case 1).
+    Finally we then create a new 'CityReport' and using this we get a string from that report which it sends back to us (these strings are just the name, district etc).
+    Once this has been completed we then return the report, however if the try statement fails then we catch this by sending back
+    an error report to the user, we then return null and then that is the end of the function.*/
     @RequestMapping("report_ten")
     protected ArrayList<CityReport.CityReportItem> getReportTen(@RequestParam(value = "country") String country) {
 
@@ -484,6 +499,21 @@ public class App {
         return null;
     }
 
+    /*This is report eight and it is designed to produce a report of All the cities in a district organised by largest population to smallest.
+    Firstly, we need a parameter passed into the function named 'district', the user will provide this when entering the url
+    which will allow us to refine our report down to the cities in a district of the users choosing.
+    Then we use a try statement and then we try and call the report, this is done by calling on the array list which holds the 'CityReport'
+    which is what we need to call upon the correct fields from the database.
+    This report gives us access to the 'city' table which we can use to combine that table with the 'country' table and then produce
+    the necessary report. After we have intialised the report we then do a sql statement which accesses the tables
+    we need. Firstly we call upon the name, district and population from the city table and name from the country table, we then
+    join the city and country tables on the CountryCode form the city report and the code from the country report.
+    This then allows us to see the name of a city's country instead of just the id. We then state that the district is unkwnown so we make
+    'district' equal a question and then order the report by the population of each city and then finish our sql statement.
+    Next we must prepare the statement by telling it we have a parameter named 'district' and which parameter it is (in this case 1).
+    Finally we then create a new 'CityReport' and using this we get a string from that report which it sends back to us (these strings are just the name, district etc).
+    Once this has been completed we then return the report, however if the try statement fails then we catch this by sending back
+    an error report to the user, we then return null and then that is the end of the function.*/
     @RequestMapping("report_eleven")
     protected ArrayList<CityReport.CityReportItem> getReportEleven(@RequestParam(value = "district") String district) {
 
