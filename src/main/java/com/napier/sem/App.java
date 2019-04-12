@@ -1088,5 +1088,36 @@ public class App {
         return null;
 
     }
+
+    @RequestMapping("report_twenty_eight")
+    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportTwentyEight(@RequestParam(value = "country") String country)  // REPORT 28
+    {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect = "";
+            ResultSet rset = null;
+
+            strSelect = "SELECT sum(population) AS 'Country Population' FROM country WHERE country = ?;";
+
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setString(1, country);
+
+            rset = preparedStatement.executeQuery();
+
+            TotalPopulationReport report = new TotalPopulationReport();
+
+            // Loop on result set and add report items to report
+            while (rset.next()) {
+
+                TotalPopulationReport.TotalPopulationReportItem item = report.new TotalPopulationReportItem("Country Population", rset.getLong(1));
+                report.addItemToReport(item);
+            }
+            return report.get_reportsItems();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+
+    }
 }
 
