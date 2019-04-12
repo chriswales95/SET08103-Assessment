@@ -5,13 +5,6 @@ import org.junit.jupiter.api.Test;
 
 public class AppTest
 {
-    static App app;
-
-    @BeforeAll
-    static void init()
-    {
-        app = new App();
-    }
 
     @Test
     void testPrintReport()
@@ -27,7 +20,7 @@ public class AppTest
         item.set_name("Scotland");
         item.set_population(100000);
 
-       // app.printReport(r);
+       App.printReport(r);
     }
 
 }
