@@ -1097,7 +1097,7 @@ public class App {
             String strSelect = "";
             ResultSet rset = null;
 
-            strSelect = "SELECT sum(population) AS 'Country Population' FROM country WHERE country = ?;";
+            strSelect = "SELECT sum(population) AS 'Country Population' FROM country WHERE name = ?;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, country);
