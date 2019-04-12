@@ -250,8 +250,8 @@ public class AppIntegrationTest
     {
         ArrayList<TotalPopulationReport.TotalPopulationReportItem> r = app.getReportTwentyEight("France");
 
-       // TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
-       // assertEquals(730074600L, i.get_population());
+        TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
+        assertEquals(59225700, i.get_population());
     }
 
 }
