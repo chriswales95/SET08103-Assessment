@@ -31,9 +31,9 @@
     var urlParams = new URLSearchParams(window.location.search);
     var title = urlParams.get('title');
 
-    var country = urlParams.get('country');
+    var Country = urlParams.get('Country');
 
-    var URL = "http://" + window.location.hostname + "/app/report_twenty_eight?country=" + country;
+    var URL = "http://" + window.location.hostname + "/app/report_twenty_eight?Country=" + Country;
 
     $.getJSON(URL, function(data) {
         // EXTRACT VALUE FOR HTML HEADER.

@@ -1090,17 +1090,17 @@ public class App {
     }
 
     @RequestMapping("report_twenty_eight")
-    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportTwentyEight(@RequestParam(value = "country") String country)  // REPORT 28
+    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportTwentyEight(@RequestParam(value = "Country") String Country)  // REPORT 28
     {
         try {
             Statement stmt = con.createStatement();
             String strSelect = "";
             ResultSet rset = null;
 
-            strSelect = "SELECT sum(population) AS 'Country Population' FROM country WHERE country = ?;";
+            strSelect = "SELECT sum(population) AS 'Country Population' FROM country WHERE Country = ?;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
-            preparedStatement.setString(1, country);
+            preparedStatement.setString(1, Country);
 
             rset = preparedStatement.executeQuery();
 
