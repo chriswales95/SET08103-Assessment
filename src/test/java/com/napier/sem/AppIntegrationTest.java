@@ -245,4 +245,13 @@ public class AppIntegrationTest
         assertEquals(730074600L, i.get_population());
     }
 
+    @Test
+    void testReportTwentyEight()
+    {
+        ArrayList<TotalPopulationReport.TotalPopulationReportItem> r = app.getReportTwentyEight("France");
+
+       // TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
+       // assertEquals(730074600L, i.get_population());
+    }
+
 }
