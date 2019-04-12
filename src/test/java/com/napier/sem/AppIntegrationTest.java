@@ -248,7 +248,16 @@ public class AppIntegrationTest
     @Test
     void testReportTwentyEight()
     {
-        ArrayList<TotalPopulationReport.TotalPopulationReportItem> r = app.getReportTwentyEight("France");
+        ArrayList<TotalPopulationReport.TotalPopulationReportItem> r = app.getReportTwentyEight("Middle East");
+
+        TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
+        assertEquals(188380700, i.get_population());
+    }
+
+    @Test
+    void testReportTwentyNine()
+    {
+        ArrayList<TotalPopulationReport.TotalPopulationReportItem> r = app.getReportTwentyNine("France");
 
         TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
         assertEquals(59225700, i.get_population());
