@@ -1066,7 +1066,7 @@ public class App {
             String strSelect = "";
             ResultSet rset = null;
 
-            strSelect = "SELECT sum(population) AS 'Continent Population' FROM country WHERE continent = ?;";
+            strSelect = "SELECT continent, sum(population) AS 'Continent Population' FROM country WHERE continent = ? group by continent;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, continent);
@@ -1078,7 +1078,7 @@ public class App {
             // Loop on result set and add report items to report
             while (rset.next()) {
 
-                TotalPopulationReport.TotalPopulationReportItem item = report.new TotalPopulationReportItem("Continent Population", rset.getLong(1));
+                TotalPopulationReport.TotalPopulationReportItem item = report.new TotalPopulationReportItem(rset.getString(1), rset.getLong(2));
                 report.addItemToReport(item);
             }
             return report.get_reportsItems();
@@ -1097,7 +1097,7 @@ public class App {
             String strSelect = "";
             ResultSet rset = null;
 
-            strSelect = "SELECT sum(population) AS 'Region Population' FROM country WHERE region = ?;";
+            strSelect = "SELECT region, sum(population) AS 'Region Population' FROM country WHERE region = ? group by region;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, region);
@@ -1109,7 +1109,7 @@ public class App {
             // Loop on result set and add report items to report
             while (rset.next()) {
 
-                TotalPopulationReport.TotalPopulationReportItem item = report.new TotalPopulationReportItem("Country Population", rset.getLong(1));
+                TotalPopulationReport.TotalPopulationReportItem item = report.new TotalPopulationReportItem(rset.getString(1), rset.getLong(2));
                 report.addItemToReport(item);
             }
             return report.get_reportsItems();
@@ -1128,7 +1128,7 @@ public class App {
             String strSelect = "";
             ResultSet rset = null;
 
-            strSelect = "SELECT sum(population) AS 'Country Population' FROM country WHERE name = ?;";
+            strSelect = "SELECT name, sum(population) AS 'Country Population' FROM country WHERE name = ? group by name;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, country);
@@ -1140,7 +1140,7 @@ public class App {
             // Loop on result set and add report items to report
             while (rset.next()) {
 
-                TotalPopulationReport.TotalPopulationReportItem item = report.new TotalPopulationReportItem("Country Population", rset.getLong(1));
+                TotalPopulationReport.TotalPopulationReportItem item = report.new TotalPopulationReportItem(rset.getString(1), rset.getLong(2));
                 report.addItemToReport(item);
             }
             return report.get_reportsItems();
