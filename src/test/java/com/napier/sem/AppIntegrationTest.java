@@ -263,4 +263,12 @@ public class AppIntegrationTest
         assertEquals(59225700, i.get_population());
     }
 
+    @Test
+    void testReportThirty()
+    {
+        ArrayList<TotalPopulationReport.TotalPopulationReportItem> r = app.getReportThirty("eastern asia");
+
+        TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
+        assertEquals(1507328000L, i.get_population());
+    }
 }

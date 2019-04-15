@@ -1177,5 +1177,35 @@ public class App {
         return null;
 
     }
+
+    @RequestMapping("report_thirty")
+    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportThirty(@RequestParam(value = "region") String region)  // REPORT 29
+    {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect = "";
+            ResultSet rset = null;
+
+            strSelect = "select region, sum(population) from country where region = ?";
+
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setString(1, region);
+
+            rset = preparedStatement.executeQuery();
+
+            TotalPopulationReport report = new TotalPopulationReport();
+
+            // Loop on result set and add report items to report
+            while (rset.next()) {
+
+                TotalPopulationReport.TotalPopulationReportItem item = report.new TotalPopulationReportItem(rset.getString(1), rset.getLong(2));
+                report.addItemToReport(item);
+            }
+            return report.get_reportsItems();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }
 
