@@ -736,6 +736,21 @@ public class App {
         return null;
     }
 
+    /*This is report fifteen and it is designed to produce a report of the top N populated cities in a district where N is provided by
+    the user. Firstly, we need two parameters passed into the function named 'number' and 'district', the user will provide these when entering the url
+    which will allow us to refine our report down to the select amount of cities we require from the district selected. We then use a try statement and then we try and call the report,
+    this is done by calling on the array list which holds the 'CityReport' which is what we need to call upon the correct fields from the database.
+    This report gives us access to the 'city' table which we can use to combine that table with the 'country' table and then produce the necessary report.
+    After we have intialised the report we then do a sql statement which accesses the tables we need.
+    Firstly we call upon the name, district, population and name from the country table, we then join the city and country tables on the CountryCode
+    form the city table and the code from the country table. This then allows us to see if a city shown is a capital city.
+    We then state to the sql that we only want a report from a certain district so we set the district to a question mark and we do not know the number that
+    we are refining down to so we use a question mark for this aswell, to tell the statement this, we then order the report
+    by the population of each city and then finish our sql statement. Next we must prepare the statement by telling it we have two parameters
+    named 'number' and 'district' and which parameters they are (in this case 1 and 2). Finally we then create a new 'CityReport'
+    and using this we get a string from that report which it sends back to us (these strings are just the name, district etc).
+    Once this has been completed we then return the report, however if the try statement fails then we catch this by sending back
+    an error report to the user, we then return null and then that is the end of the function.*/
     @RequestMapping("report_sixteen")
     protected ArrayList<CityReport.CityReportItem> getReportSixteen(@RequestParam(value = "number") int num, @RequestParam(value = "district") String district)  // REPORT 16
     {
@@ -771,6 +786,18 @@ public class App {
         return null;
     }
 
+    /*This is report seventeen and it is designed to produce a report of All the capital cities in the world organised by largest population to smallest.
+   Firstly we use a try statement and then we try and call the report, this is done by calling on the array list which holds the 'CityReport'
+   which is what we need to call upon the correct fields from the database.
+   This report gives us access to the 'city' table which we can use to combine that table with the 'country' table and then produce
+   the necessary report. After we have intialised the report we then do a sql statement which accesses the tables
+   we need. Firstly we call upon the name, district and population from the city table and name from the country table, we then
+   join the city and country tables on the id form the city report and the capitak from the country report.
+   This then allows us to see the name of a capital city's country instead of just the id. We then order the report
+   by the population of each city and then finish our sql statement. Finally we then create a new 'CityReport'
+   and using this we get a string from that report which it sends back to us (these strings are just the name, district etc).
+   Once this has been completed we then return the report, however if the try statement fails then we catch this by sending back
+   an error report to the user, we then return null and then that is the end of the function.*/
     @RequestMapping("report_seventeen")
     protected ArrayList<CityReport.CityReportItem> getReportSeventeen() {
 
@@ -1121,7 +1148,7 @@ public class App {
     }
 
     @RequestMapping("report_twenty_nine")
-    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportTwentyNine(@RequestParam(value = "country") String country)  // REPORT 28
+    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportTwentyNine(@RequestParam(value = "country") String country)  // REPORT 29
     {
         try {
             Statement stmt = con.createStatement();
