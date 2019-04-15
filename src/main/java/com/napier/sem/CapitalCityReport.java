@@ -27,5 +27,13 @@ public class CapitalCityReport extends Report {
             this._Country = Country;
             this.set_population(Population);
         }
+
+        public String get_Country() {
+            return _Country;
+        }
+
+        public void set_Country(String _Country) {
+            this._Country = _Country;
+        }
     }
 }

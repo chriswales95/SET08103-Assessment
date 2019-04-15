@@ -149,28 +149,28 @@ public class AppIntegrationTest
     @Test
     void testReportSeventeen()
     {
-        ArrayList<CityReport.CityReportItem> r = app.getReportSeventeen();
+        ArrayList<CapitalCityReport.CapitalCityReportItem> r = app.getReportSeventeen();
 
-        CityReport.CityReportItem i = r.get(2);
-        assertEquals("Mexico", i.get_country());
+        CapitalCityReport.CapitalCityReportItem i = r.get(2);
+        assertEquals("Mexico", i.get_Country());
     }
 
     @Test
     void testReportEighteen()
     {
-        ArrayList<CityReport.CityReportItem> r =  app.getReportEighteen("Europe");
+        ArrayList<CapitalCityReport.CapitalCityReportItem> r =  app.getReportEighteen("Europe");
 
-        CityReport.CityReportItem i = r.get(2);
-        assertEquals("Germany", i.get_country());
+        CapitalCityReport.CapitalCityReportItem  i = r.get(2);
+        assertEquals("Germany", i.get_Country());
     }
 
     @Test
     void testReportNineteen()
     {
-        ArrayList<CityReport.CityReportItem> r = app.getReportNineteen("Caribbean");
+        ArrayList<CapitalCityReport.CapitalCityReportItem> r = app.getReportNineteen("Caribbean");
 
-        CityReport.CityReportItem i = r.get(2);
-        assertEquals("Haiti", i.get_country());
+        CapitalCityReport.CapitalCityReportItem  i = r.get(2);
+        assertEquals("Haiti", i.get_Country());
     }
 
     @Test

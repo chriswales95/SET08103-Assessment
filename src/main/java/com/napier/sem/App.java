@@ -772,7 +772,7 @@ public class App {
     }
 
     @RequestMapping("report_seventeen")
-    protected ArrayList<CityReport.CityReportItem> getReportSeventeen() {
+    protected ArrayList<CapitalCityReport.CapitalCityReportItem> getReportSeventeen() {
 
         // REPORT 17
         try {
@@ -781,14 +781,14 @@ public class App {
             ResultSet rset = null;
 
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital order by city.population DESC;";
+                    "select city.name, country.name, city.population from city city join country country on id=capital order by city.population DESC;";
             rset = stmt.executeQuery(strSelect);
 
-            CityReport report = new CityReport();
+            CapitalCityReport report = new CapitalCityReport();
 
             // Loop on result set and add report items to report
             while (rset.next()) {
-                CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
+                CapitalCityReport.CapitalCityReportItem item = report.new CapitalCityReportItem(rset.getString(1), rset.getString(2), rset.getInt(3));
                 report.addItemToReport(item);
             }
             return report.get_reportsItems();
@@ -799,23 +799,23 @@ public class App {
     }
 
     @RequestMapping("report_eighteen")
-    protected ArrayList<CityReport.CityReportItem> getReportEighteen(@RequestParam(value = "continent") String continent)  // REPORT 18
+    protected ArrayList<CapitalCityReport.CapitalCityReportItem> getReportEighteen(@RequestParam(value = "continent") String continent)  // REPORT 18
     {
         try {
             String strSelect = "";
             ResultSet rset = null;
 
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital where continent = ? order by city.population DESC;;";
+                    "select city.name, country.name, city.population from city city join country country on id=capital where continent = ? order by city.population DESC;;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, continent);
 
             rset = preparedStatement.executeQuery();
-            CityReport report = new CityReport();
+            CapitalCityReport report = new CapitalCityReport();
 
             while (rset.next()) {
-                CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
+                CapitalCityReport.CapitalCityReportItem item = report.new CapitalCityReportItem(rset.getString(1), rset.getString(2), rset.getInt(3));
                 report.addItemToReport(item);
             }
 
@@ -828,23 +828,23 @@ public class App {
     }
 
     @RequestMapping("report_nineteen")
-    protected ArrayList<CityReport.CityReportItem> getReportNineteen(@RequestParam(value = "region") String region)  // REPORT 19
+    protected ArrayList<CapitalCityReport.CapitalCityReportItem> getReportNineteen(@RequestParam(value = "region") String region)  // REPORT 19
     {
         try {
             String strSelect = "";
             ResultSet rset = null;
 
             strSelect =
-                    "select city.name, country.name, city.district, city.population from city city join country country on id=capital where region = ? order by city.population DESC;;";
+                    "select city.name, country.name, city.population from city city join country country on id=capital where region = ? order by city.population DESC;;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, region);
 
             rset = preparedStatement.executeQuery();
-            CityReport report = new CityReport();
+            CapitalCityReport report = new CapitalCityReport();
 
             while (rset.next()) {
-                CityReport.CityReportItem item = report.new CityReportItem(rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
+                CapitalCityReport.CapitalCityReportItem item = report.new CapitalCityReportItem(rset.getString(1), rset.getString(2), rset.getInt(3));
                 report.addItemToReport(item);
             }
 
