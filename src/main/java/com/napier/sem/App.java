@@ -1179,17 +1179,17 @@ public class App {
     }
 
     @RequestMapping("report_thirty")
-    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportThirty(@RequestParam(value = "region") String region)  // REPORT 29
+    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportThirty(@RequestParam(value = "district") String district)  // REPORT 30
     {
         try {
             Statement stmt = con.createStatement();
             String strSelect = "";
             ResultSet rset = null;
 
-            strSelect = "select region, sum(population) from country where region = ?";
+            strSelect = "select region, sum(population) as 'District population' from city where district = ?";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
-            preparedStatement.setString(1, region);
+            preparedStatement.setString(1, district);
 
             rset = preparedStatement.executeQuery();
 
