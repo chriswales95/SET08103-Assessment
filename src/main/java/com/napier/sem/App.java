@@ -825,6 +825,20 @@ public class App {
         return null;
     }
 
+    /*This is report eighteen and it is designed to produce a report of All the capital cities in a continent organised by largest population to smallest.
+    Firstly, we need a parameter passed into the function named 'continent', the user will provide these when entering the url
+    which will allow us to refine our report down to the select amount of capital cities we require from the continent selected. We then use a try statement and then we try and call the report,
+    this is done by calling on the array list which holds the 'CapitalCityReport' which is what we need to call upon the correct fields from the database.
+    This report gives us access to the 'city' table which we can use to combine that table with the 'country' table and then produce the necessary report.
+    After we have intialised the report we then do a sql statement which accesses the tables we need.
+    Firstly we call upon the names and population and from the country and city table, we then join the city and country tables on the CountryCode
+    form the city table and the code from the country table. This then allows us to see if a city shown is a capital city.
+    We then state to the sql that we only want a report from a certain continent so we set the continent to a question mark, we then order the report
+    by the population of each capital city and then finish our sql statement. Next we must prepare the statement by telling it we have a parameter
+    named 'continent' and which parameter it is (in this case 1). Finally we then create a new 'CapitalCityReport'
+    and using this we get a string from that report which it sends back to us (these strings are just the name, population etc).
+    Once this has been completed we then return the report, however if the try statement fails then we catch this by sending back
+    an error report to the user, we then return null and then that is the end of the function.*/
     @RequestMapping("report_eighteen")
     protected ArrayList<CapitalCityReport.CapitalCityReportItem> getReportEighteen(@RequestParam(value = "continent") String continent)  // REPORT 18
     {
@@ -854,6 +868,20 @@ public class App {
         return null;
     }
 
+    /*This is report nineteen and it is designed to produce a report of All the capital cities in a region organised by largest population to smallest.
+    Firstly, we need a parameter passed into the function named 'region', the user will provide these when entering the url
+    which will allow us to refine our report down to the select amount of capital cities we require from the region selected. We then use a try statement and then we try and call the report,
+    this is done by calling on the array list which holds the 'CapitalCityReport' which is what we need to call upon the correct fields from the database.
+    This report gives us access to the 'city' table which we can use to combine that table with the 'country' table and then produce the necessary report.
+    After we have intialised the report we then do a sql statement which accesses the tables we need.
+    Firstly we call upon the names and population and from the country and city table, we then join the city and country tables on the CountryCode
+    form the city table and the code from the country table. This then allows us to see if a city shown is a capital city.
+    We then state to the sql that we only want a report from a certain region so we set the region to a question mark, we then order the report
+    by the population of each capital city and then finish our sql statement. Next we must prepare the statement by telling it we have a parameter
+    named 'region' and which parameter it is (in this case 1). Finally we then create a new 'CapitalCityReport'
+    and using this we get a string from that report which it sends back to us (these strings are just the name, population etc).
+    Once this has been completed we then return the report, however if the try statement fails then we catch this by sending back
+    an error report to the user, we then return null and then that is the end of the function.*/
     @RequestMapping("report_nineteen")
     protected ArrayList<CapitalCityReport.CapitalCityReportItem> getReportNineteen(@RequestParam(value = "region") String region)  // REPORT 19
     {
