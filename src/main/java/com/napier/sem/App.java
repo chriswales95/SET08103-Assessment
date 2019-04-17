@@ -1277,5 +1277,35 @@ public class App {
         }
         return null;
     }
+
+    @RequestMapping("report_thirty_one")
+    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportThirtyOne(@RequestParam(value = "name") String name)  // REPORT 31
+    {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect = "";
+            ResultSet rset = null;
+
+            strSelect = "select name, population from city where name = ?";
+
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setString(1, name);
+
+            rset = preparedStatement.executeQuery();
+
+            TotalPopulationReport report = new TotalPopulationReport();
+
+            // Loop on result set and add report items to report
+            while (rset.next()) {
+
+                TotalPopulationReport.TotalPopulationReportItem item = report.new TotalPopulationReportItem(rset.getString(1), rset.getLong(2));
+                report.addItemToReport(item);
+            }
+            return report.get_reportsItems();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }
 
