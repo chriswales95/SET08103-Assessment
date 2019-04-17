@@ -268,7 +268,7 @@ public class AppIntegrationTest
     {
         ArrayList<TotalPopulationReport.TotalPopulationReportItem> r = app.getReportThirty("Scotland");
 
-        //TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
-        //assertEquals(1507328000L, i.get_population());
+        TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
+        assertEquals(1429620, i.get_population());
     }
 }

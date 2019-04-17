@@ -1256,7 +1256,7 @@ public class App {
             String strSelect = "";
             ResultSet rset = null;
 
-            strSelect = "select region, sum(population) as 'District population' from city where district = ?";
+            strSelect = "select district, sum(population) as 'District Population' from city where district = ? group by district;";
 
             PreparedStatement preparedStatement = con.prepareStatement(strSelect);
             preparedStatement.setString(1, district);
