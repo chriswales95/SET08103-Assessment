@@ -271,4 +271,13 @@ public class AppIntegrationTest
         TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
         assertEquals(1429620, i.get_population());
     }
+
+    @Test
+    void testReportThirtyOne()
+    {
+        ArrayList<TotalPopulationReport.TotalPopulationReportItem> r = app.getReportThirtyOne("Edinburgh");
+
+        TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
+        assertEquals(450180, i.get_population());
+    }
 }
