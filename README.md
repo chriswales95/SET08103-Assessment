@@ -44,7 +44,7 @@ Team assessment for SET08103 Software Engineering Methods
 | 28 | The population of a region. | Yes |  |
 | 29 | The population of a country. | Yes |  |
 | 30 | The population of a district. | Yes |  |
-| 31 | The population of a city. |  | Yes |
+| 31 | The population of a city. | Yes | |
 | 32 | The population of Chinese speakers. |  |  |
 | 33 | The population of English speakers. |  |  |
 | 34 | The population of Hindi speakers. |  |  |
