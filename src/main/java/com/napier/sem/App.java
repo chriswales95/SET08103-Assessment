@@ -911,20 +911,17 @@ public class App {
         return null;
     }
 
-    /*This is report twelve and it is designed to produce a report of the top N populated capital cities in the world where N is provided by
-    the user. Firstly, we need a parameter passed into the function named 'number', the user will provide this when entering the url
-    which will allow us to refine our report down to the select amount of capital cities we require. We then use a try statement and then we try and call the report,
-    this is done by calling on the array list which holds the 'CapitalCityReport' which is what we need to call upon the correct fields from the database.
-    This report gives us access to the 'city' table which we can use to combine that table with the 'country' table and then produce the necessary report.
-    After we have intialised the report we then do a sql statement which accesses the tables we need.
-    Firstly we call upon the name, district, population and name from the country table, we then join the city and country tables on the id
-    form the city table and the capital from the country table.
-    We then state to the sql that we do not know the number that we are refining down to so we use a question mark to tell the statement this, we then order the report
-    by the population of each capital city and then finish our sql statement. Next we must prepare the statement by telling it we have a parameter
-    named 'number' and which parameter it is (in this case 1). Finally we then create a new 'CapitalCityReport'
-    and using this we get a string from that report which it sends back to us (these strings are just the name, district etc).
-    Once this has been completed we then return the report, however if the try statement fails then we catch this by sending back
-    an error report to the user, we then return null and then that is the end of the function.*/
+    /*This is report Twenty. It will produce a report of the top N populated capital cities in the world where N is provided by the user.
+    First, we pass a parameter into the function named 'number'. This is provided by the user when entering the url.
+    This will allow us to refine our report down to the select amount of cities we require. We then use a try-catch statement as we call the report.
+    This is done by calling on the array list which holds the 'CityReport', which we use to call the correct fields from the database.
+    This report gives us access to the 'city' table which we can use to combine that table with the 'country' table to then produce the necessary report.
+    The report is initalised, we then do a sql statement which accesses the tables we need:
+    We call the name, district, and population from the city table, then the name from the country table, and then join on ID and capital
+    We input a question mark to note that the user has to input the refinement number, and then order the report by population.
+    We then prepare the statement to take the parameter named 'number'.
+    Finally we then create a new 'CityReport' and get the report's output. (Code, name, region, etc).
+    We then return the report, noting that if our previous try-catch failed, it should send the user an error report, and return null instead.*/
     @RequestMapping("report_twenty")
     protected ArrayList<CityReport.CityReportItem> getReportTwenty(@RequestParam(value = "number") String number)  // REPORT 20
     {
@@ -955,20 +952,17 @@ public class App {
         return null;
     }
 
-    /*This is report twelve and it is designed to produce a report of the top N populated capital cities in a continent where N is provided by
-    the user. Firstly, we need two parameters passed into the function named 'continent' and 'number', the user will provide these when entering the url
-    which will allow us to refine our report down to the select amount of capital cities we require. We then use a try statement and then we try and call the report,
-    this is done by calling on the array list which holds the 'CapitalCityReport' which is what we need to call upon the correct fields from the database.
-    This report gives us access to the 'city' table which we can use to combine that table with the 'country' table and then produce the necessary report.
-    After we have intialised the report we then do a sql statement which accesses the tables we need.
-    Firstly we call upon the name, district, population and name from the country table, we then join the city and country tables on the id
-    form the city table and the capital from the country table.
-    We then state to the sql that we do not know the continent or the number that we are refining down to so we use a question mark to tell the statement this, we then order the report
-    by the population of each capital city and then finish our sql statement. Next we must prepare the statement by telling it we have parameters
-    named 'continent' and 'number' and which parameter they are (in this case 1 and 2). Finally we then create a new 'CapitalCityReport'
-    and using this we get a string from that report which it sends back to us (these strings are just the name, district etc).
-    Once this has been completed we then return the report, however if the try statement fails then we catch this by sending back
-    an error report to the user, we then return null and then that is the end of the function.*/
+    /*This is report Twenty One. It will produce a report of the top N populated capital cities in a continent where N is provided by the user.
+    First, we pass parameters into the functions 'continent' and 'number'. This is provided by the user when entering the url.
+    This will allow us to refine our report down to the select amount of cities we require. We then use a try-catch statement as we call the report.
+    This is done by calling on the array list which holds the 'CityReport', which we use to call the correct fields from the database.
+    This report gives us access to the 'city' table which we can use to combine that table with the 'cities' table to then produce the necessary report.
+    The report is initalised, we then do a sql statement which accesses the tables we need:
+    We call the name, district, and population from the city table, then the name from the country table, and then join on ID and capital.
+    We input a question mark to note that the user has to input the refinement number and desired continent, and then order the report by population.
+    We then prepare the statement to take the parameter named 'number'.
+    Finally we then create a new 'CityReport' and get the report's output. (Code, name, region, etc).
+    We then return the report, noting that if our previous try-catch failed, it should send the user an error report, and return null instead.*/
     @RequestMapping("report_twenty_one")
     protected ArrayList<CityReport.CityReportItem> getReportTwentyOne(@RequestParam(value = "continent") String continent, @RequestParam(value = "number") String number)  // REPORT 21
     {
@@ -1001,20 +995,18 @@ public class App {
         return null;
     }
 
-    /*This is report twelve and it is designed to produce a report of the top N populated capital cities in a region where N is provided by
-    the user. Firstly, we need two parameters passed into the function named 'region' and 'number', the user will provide these when entering the url
-    which will allow us to refine our report down to the select amount of capital cities we require. We then use a try statement and then we try and call the report,
-    this is done by calling on the array list which holds the 'CapitalCityReport' which is what we need to call upon the correct fields from the database.
-    This report gives us access to the 'city' table which we can use to combine that table with the 'country' table and then produce the necessary report.
-    After we have intialised the report we then do a sql statement which accesses the tables we need.
-    Firstly we call upon the name, district, population and name from the country table, we then join the city and country tables on the id
-    form the city table and the capital from the country table.
-    We then state to the sql that we do not know the region or the number that we are refining down to so we use a question mark to tell the statement this, we then order the report
-    by the population of each capital city and then finish our sql statement. Next we must prepare the statement by telling it we have parameters
-    named 'region' and 'number' and which parameter they are (in this case 1 and 2). Finally we then create a new 'CapitalCityReport'
-    and using this we get a string from that report which it sends back to us (these strings are just the name, district etc).
-    Once this has been completed we then return the report, however if the try statement fails then we catch this by sending back
-    an error report to the user, we then return null and then that is the end of the function.*/
+
+    /*This is report Twenty Two. It will produce a report of the top N populated capital cities in a region where N is provided by the user.
+    First, we pass parameters into the functions 'region' and 'number'. This is provided by the user when entering the url.
+    This will allow us to refine our report down to the select amount of cities we require. We then use a try-catch statement as we call the report.
+    This is done by calling on the array list which holds the 'CityReport', which we use to call the correct fields from the database.
+    This report gives us access to the 'city' table which we can use to combine that table with the 'cities' table to then produce the necessary report.
+    The report is initalised, we then do a sql statement which accesses the tables we need:
+    We call the name, district, and population from the city table, then the name from the country table, and then join on ID and capital.
+    We input a question marks to note that the user has to input the refinement number and desired region, and then order the report by population.
+    We then prepare the statement to take the parameter named 'number'.
+    Finally we then create a new 'CityReport' and get the report's output. (Code, name, region, etc).
+    We then return the report, noting that if our previous try-catch failed, it should send the user an error report, and return null instead.*/
     @RequestMapping("report_twenty_two")
     protected ArrayList<CityReport.CityReportItem> getReportTwentyTwo(@RequestParam(value = "region") String region, @RequestParam(value = "number") String number)  // REPORT 22
     {
@@ -1047,6 +1039,17 @@ public class App {
         return null;
     }
 
+    /*This is report __________ [Report Number]. It will produce a report of __________ [The report's function].
+    First, we pass A PARAMETER/PARAMETERS into the FUNCTION/FUNCTIONS named _________[List parameters here]. ((This is provided by the user when entering the url.))
+    This will allow us to refine our report down to __________ [Whatever the user input]. We then use a try-catch statement as we call the report.
+    This is done by calling on the array list which holds the __________ [Type report], which we use to call the correct fields from the database.
+    This report gives us access to the __________ [Relevant table] table which we can use to combine that table with the __________ [Joined table] table to then produce the necessary report.
+    The report is initalised, we then do a sql statement which accesses the tables we need:
+    We call the __________________ [List ALL called items here], ((and then join on __________ and __________ [Any joins should be described here]))
+    We input a question mark to note that the user has to input __________ [Whatever the user input goes here], and then order the report by population.
+    We then prepare the statement to take the parameter named __________ [Parameter name here].
+    Finally we then create a new __________ [Report Name Here] and get the report's output.
+We then return the report, noting that if our previous try-catch failed, it should send the user an error report, and return null instead.*/
     @RequestMapping("report_twenty_three")
     protected ArrayList<PopulationReport.PopulationReportItem> getReportTwentyThree()  // REPORT 23
     {
@@ -1074,6 +1077,17 @@ public class App {
 
     }
 
+    /*This is report __________ [Report Number]. It will produce a report of __________ [The report's function].
+    First, we pass A PARAMETER/PARAMETERS into the FUNCTION/FUNCTIONS named _________[List parameters here]. ((This is provided by the user when entering the url.))
+    This will allow us to refine our report down to __________ [Whatever the user input]. We then use a try-catch statement as we call the report.
+    This is done by calling on the array list which holds the __________ [Type report], which we use to call the correct fields from the database.
+    This report gives us access to the __________ [Relevant table] table which we can use to combine that table with the __________ [Joined table] table to then produce the necessary report.
+    The report is initalised, we then do a sql statement which accesses the tables we need:
+    We call the __________________ [List ALL called items here], ((and then join on __________ and __________ [Any joins should be described here]))
+    We input a question mark to note that the user has to input __________ [Whatever the user input goes here], and then order the report by population.
+    We then prepare the statement to take the parameter named __________ [Parameter name here].
+    Finally we then create a new __________ [Report Name Here] and get the report's output.
+    We then return the report, noting that if our previous try-catch failed, it should send the user an error report, and return null instead.*/
     @RequestMapping("report_twenty_four")
     protected ArrayList<PopulationReport.PopulationReportItem> getReportTwentyFour()  // REPORT 24
     {
@@ -1101,6 +1115,17 @@ public class App {
 
     }
 
+    /*This is report __________ [Report Number]. It will produce a report of __________ [The report's function].
+    First, we pass A PARAMETER/PARAMETERS into the FUNCTION/FUNCTIONS named _________[List parameters here]. ((This is provided by the user when entering the url.))
+    This will allow us to refine our report down to __________ [Whatever the user input]. We then use a try-catch statement as we call the report.
+    This is done by calling on the array list which holds the __________ [Type report], which we use to call the correct fields from the database.
+    This report gives us access to the __________ [Relevant table] table which we can use to combine that table with the __________ [Joined table] table to then produce the necessary report.
+    The report is initalised, we then do a sql statement which accesses the tables we need:
+    We call the __________________ [List ALL called items here], ((and then join on __________ and __________ [Any joins should be described here]))
+    We input a question mark to note that the user has to input __________ [Whatever the user input goes here], and then order the report by population.
+    We then prepare the statement to take the parameter named __________ [Parameter name here].
+    Finally we then create a new __________ [Report Name Here] and get the report's output.
+    We then return the report, noting that if our previous try-catch failed, it should send the user an error report, and return null instead.*/
     @RequestMapping("report_twenty_five")
     protected ArrayList<PopulationReport.PopulationReportItem> getReportTwentyFive()  // REPORT 25
     {
@@ -1128,6 +1153,17 @@ public class App {
 
     }
 
+    /*This is report __________ [Report Number]. It will produce a report of __________ [The report's function].
+    First, we pass A PARAMETER/PARAMETERS into the FUNCTION/FUNCTIONS named _________[List parameters here]. ((This is provided by the user when entering the url.))
+    This will allow us to refine our report down to __________ [Whatever the user input]. We then use a try-catch statement as we call the report.
+    This is done by calling on the array list which holds the __________ [Type report], which we use to call the correct fields from the database.
+    This report gives us access to the __________ [Relevant table] table which we can use to combine that table with the __________ [Joined table] table to then produce the necessary report.
+    The report is initalised, we then do a sql statement which accesses the tables we need:
+    We call the __________________ [List ALL called items here], ((and then join on __________ and __________ [Any joins should be described here]))
+    We input a question mark to note that the user has to input __________ [Whatever the user input goes here], and then order the report by population.
+    We then prepare the statement to take the parameter named __________ [Parameter name here].
+    Finally we then create a new __________ [Report Name Here] and get the report's output.
+    We then return the report, noting that if our previous try-catch failed, it should send the user an error report, and return null instead.*/
     @RequestMapping("report_twenty_six")
     protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportTwentySix()  // REPORT 26
     {
@@ -1155,6 +1191,17 @@ public class App {
 
     }
 
+    /*This is report __________ [Report Number]. It will produce a report of __________ [The report's function].
+    First, we pass A PARAMETER/PARAMETERS into the FUNCTION/FUNCTIONS named _________[List parameters here]. ((This is provided by the user when entering the url.))
+    This will allow us to refine our report down to __________ [Whatever the user input]. We then use a try-catch statement as we call the report.
+    This is done by calling on the array list which holds the __________ [Type report], which we use to call the correct fields from the database.
+    This report gives us access to the __________ [Relevant table] table which we can use to combine that table with the __________ [Joined table] table to then produce the necessary report.
+    The report is initalised, we then do a sql statement which accesses the tables we need:
+    We call the __________________ [List ALL called items here], ((and then join on __________ and __________ [Any joins should be described here]))
+    We input a question mark to note that the user has to input __________ [Whatever the user input goes here], and then order the report by population.
+    We then prepare the statement to take the parameter named __________ [Parameter name here].
+    Finally we then create a new __________ [Report Name Here] and get the report's output.
+    We then return the report, noting that if our previous try-catch failed, it should send the user an error report, and return null instead.*/
     @RequestMapping("report_twenty_seven")
     protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportTwentySeven(@RequestParam(value = "continent") String continent)  // REPORT 27
     {
@@ -1186,6 +1233,17 @@ public class App {
 
     }
 
+    /*This is report __________ [Report Number]. It will produce a report of __________ [The report's function].
+    First, we pass A PARAMETER/PARAMETERS into the FUNCTION/FUNCTIONS named _________[List parameters here]. ((This is provided by the user when entering the url.))
+    This will allow us to refine our report down to __________ [Whatever the user input]. We then use a try-catch statement as we call the report.
+    This is done by calling on the array list which holds the __________ [Type report], which we use to call the correct fields from the database.
+    This report gives us access to the __________ [Relevant table] table which we can use to combine that table with the __________ [Joined table] table to then produce the necessary report.
+    The report is initalised, we then do a sql statement which accesses the tables we need:
+    We call the __________________ [List ALL called items here], ((and then join on __________ and __________ [Any joins should be described here]))
+    We input a question mark to note that the user has to input __________ [Whatever the user input goes here], and then order the report by population.
+    We then prepare the statement to take the parameter named __________ [Parameter name here].
+    Finally we then create a new __________ [Report Name Here] and get the report's output.
+    We then return the report, noting that if our previous try-catch failed, it should send the user an error report, and return null instead.*/
     @RequestMapping("report_twenty_eight")
     protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportTwentyEight(@RequestParam(value = "region") String region)  // REPORT 28
     {
@@ -1217,6 +1275,17 @@ public class App {
 
     }
 
+    /*This is report __________ [Report Number]. It will produce a report of __________ [The report's function].
+    First, we pass A PARAMETER/PARAMETERS into the FUNCTION/FUNCTIONS named _________[List parameters here]. ((This is provided by the user when entering the url.))
+    This will allow us to refine our report down to __________ [Whatever the user input]. We then use a try-catch statement as we call the report.
+    This is done by calling on the array list which holds the __________ [Type report], which we use to call the correct fields from the database.
+    This report gives us access to the __________ [Relevant table] table which we can use to combine that table with the __________ [Joined table] table to then produce the necessary report.
+    The report is initalised, we then do a sql statement which accesses the tables we need:
+    We call the __________________ [List ALL called items here], ((and then join on __________ and __________ [Any joins should be described here]))
+    We input a question mark to note that the user has to input __________ [Whatever the user input goes here], and then order the report by population.
+    We then prepare the statement to take the parameter named __________ [Parameter name here].
+    Finally we then create a new __________ [Report Name Here] and get the report's output.
+    We then return the report, noting that if our previous try-catch failed, it should send the user an error report, and return null instead.*/
     @RequestMapping("report_twenty_nine")
     protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportTwentyNine(@RequestParam(value = "country") String country)  // REPORT 29
     {
@@ -1248,6 +1317,17 @@ public class App {
 
     }
 
+    /*This is report __________ [Report Number]. It will produce a report of __________ [The report's function].
+    First, we pass A PARAMETER/PARAMETERS into the FUNCTION/FUNCTIONS named _________[List parameters here]. ((This is provided by the user when entering the url.))
+    This will allow us to refine our report down to __________ [Whatever the user input]. We then use a try-catch statement as we call the report.
+    This is done by calling on the array list which holds the __________ [Type report], which we use to call the correct fields from the database.
+    This report gives us access to the __________ [Relevant table] table which we can use to combine that table with the __________ [Joined table] table to then produce the necessary report.
+    The report is initalised, we then do a sql statement which accesses the tables we need:
+    We call the __________________ [List ALL called items here], ((and then join on __________ and __________ [Any joins should be described here]))
+    We input a question mark to note that the user has to input __________ [Whatever the user input goes here], and then order the report by population.
+    We then prepare the statement to take the parameter named __________ [Parameter name here].
+    Finally we then create a new __________ [Report Name Here] and get the report's output.
+    We then return the report, noting that if our previous try-catch failed, it should send the user an error report, and return null instead.*/
     @RequestMapping("report_thirty")
     protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportThirty(@RequestParam(value = "district") String district)  // REPORT 30
     {
@@ -1278,6 +1358,17 @@ public class App {
         return null;
     }
 
+    /*This is report __________ [Report Number]. It will produce a report of __________ [The report's function].
+    First, we pass A PARAMETER/PARAMETERS into the FUNCTION/FUNCTIONS named _________[List parameters here]. ((This is provided by the user when entering the url.))
+    This will allow us to refine our report down to __________ [Whatever the user input]. We then use a try-catch statement as we call the report.
+    This is done by calling on the array list which holds the __________ [Type report], which we use to call the correct fields from the database.
+    This report gives us access to the __________ [Relevant table] table which we can use to combine that table with the __________ [Joined table] table to then produce the necessary report.
+    The report is initalised, we then do a sql statement which accesses the tables we need:
+    We call the __________________ [List ALL called items here], ((and then join on __________ and __________ [Any joins should be described here]))
+    We input a question mark to note that the user has to input __________ [Whatever the user input goes here], and then order the report by population.
+    We then prepare the statement to take the parameter named __________ [Parameter name here].
+    Finally we then create a new __________ [Report Name Here] and get the report's output.
+    We then return the report, noting that if our previous try-catch failed, it should send the user an error report, and return null instead.*/
     @RequestMapping("report_thirty_one")
     protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportThirtyOne(@RequestParam(value = "name") String name)  // REPORT 31
     {
@@ -1309,3 +1400,16 @@ public class App {
     }
 }
 
+    //Formula I've used for describing functions for the sake of conciseness found below.
+
+    /*This is report __________ [Report Number]. It will produce a report of __________ [The report's function].
+    First, we pass A PARAMETER/PARAMETERS into the FUNCTION/FUNCTIONS named _________[List parameters here]. ((This is provided by the user when entering the url.))
+    This will allow us to refine our report down to __________ [Whatever the user input]. We then use a try-catch statement as we call the report.
+    This is done by calling on the array list which holds the __________ [Type report], which we use to call the correct fields from the database.
+    This report gives us access to the __________ [Relevant table] table which we can use to combine that table with the __________ [Joined table] table to then produce the necessary report.
+    The report is initalised, we then do a sql statement which accesses the tables we need:
+    We call the __________________ [List ALL called items here], ((and then join on __________ and __________ [Any joins should be described here]))
+    We input a question mark to note that the user has to input __________ [Whatever the user input goes here], and then order the report by population.
+    We then prepare the statement to take the parameter named __________ [Parameter name here].
+    Finally we then create a new __________ [Report Name Here] and get the report's output.
+    We then return the report, noting that if our previous try-catch failed, it should send the user an error report, and return null instead.*/
