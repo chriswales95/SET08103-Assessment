@@ -1373,7 +1373,6 @@ We then return the report, noting that if our previous try-catch failed, it shou
     protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportThirtyOne(@RequestParam(value = "name") String name)  // REPORT 31
     {
         try {
-            Statement stmt = con.createStatement();
             String strSelect = "";
             ResultSet rset = null;
 
@@ -1387,6 +1386,57 @@ We then return the report, noting that if our previous try-catch failed, it shou
             TotalPopulationReport report = new TotalPopulationReport();
 
             // Loop on result set and add report items to report
+            while (rset.next()) {
+
+                TotalPopulationReport.TotalPopulationReportItem item = report.new TotalPopulationReportItem(rset.getString(1), rset.getLong(2));
+                report.addItemToReport(item);
+            }
+            return report.get_reportsItems();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+
+    @RequestMapping("report_thirty_two")
+    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportThirtyTwo(){
+        return getLanguageReport("chinese");
+    }
+
+    @RequestMapping("report_thirty_three")
+    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportThirtyThree(){
+        return getLanguageReport("english");
+    }
+
+    @RequestMapping("report_thirty_four")
+    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportThirtyFour(){
+        return getLanguageReport("hindi");
+    }
+
+    @RequestMapping("report_thirty_five")
+    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportThirtyFive(){
+        return getLanguageReport("spanish");
+    }
+
+    @RequestMapping("report_thirty_six")
+    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getReportThirtySix(){
+        return getLanguageReport("arabic");
+    }
+
+    protected ArrayList<TotalPopulationReport.TotalPopulationReportItem> getLanguageReport(String language)  // REPORT 32-36
+    {
+        try {
+            String strSelect = "select language, sum(population) from country join countrylanguage on (code = countrycode) where countrylanguage.language = ?";
+            ResultSet rset = null;
+
+            PreparedStatement preparedStatement = con.prepareStatement(strSelect);
+            preparedStatement.setString(1, language);
+
+            rset = preparedStatement.executeQuery();
+
+            TotalPopulationReport report = new TotalPopulationReport();
+
             while (rset.next()) {
 
                 TotalPopulationReport.TotalPopulationReportItem item = report.new TotalPopulationReportItem(rset.getString(1), rset.getLong(2));
