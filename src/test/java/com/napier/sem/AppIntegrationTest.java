@@ -280,4 +280,44 @@ public class AppIntegrationTest
         TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
         assertEquals(450180, i.get_population());
     }
+
+    @Test
+    void testReportThirtyTwo()
+    {
+        ArrayList<TotalPopulationReport.TotalPopulationReportItem> r = app.getReportThirtyTwo();
+        TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
+        assertNotNull(i);
+    }
+
+    @Test
+    void testReportThirtyThree()
+    {
+        ArrayList<TotalPopulationReport.TotalPopulationReportItem> r = app.getReportThirtyThree();
+        TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
+        assertNotNull(i);
+    }
+
+    @Test
+    void testReportThirtyFour()
+    {
+        ArrayList<TotalPopulationReport.TotalPopulationReportItem> r = app.getReportThirtyFour();
+        TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
+        assertNotNull(i);
+    }
+
+    @Test
+    void testReportThirtyFive()
+    {
+        ArrayList<TotalPopulationReport.TotalPopulationReportItem> r = app.getReportThirtyFive();
+        TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
+        assertNotNull(i);
+    }
+
+    @Test
+    void testReportThirtySix()
+    {
+        ArrayList<TotalPopulationReport.TotalPopulationReportItem> r = app.getReportThirtySix();
+        TotalPopulationReport.TotalPopulationReportItem i = r.get(0);
+        assertNotNull(i);
+    }
 }
