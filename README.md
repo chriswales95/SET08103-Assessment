@@ -47,6 +47,6 @@ Team assessment for SET08103 Software Engineering Methods
 | 31 | The population of a city. | Yes | ![](screenshots/31.png)|
 | 32 | The population of Chinese speakers. | Yes | ![](screenshots/32.png) |
 | 33 | The population of English speakers. | Yes | ![](screenshots/33.png) |
-| 34 | The population of Hindi speakers. | Yes | ![](screenshots/34.ng) |
+| 34 | The population of Hindi speakers. | Yes | ![](screenshots/34.png) |
 | 35 | The population of Spanish speakers. | Yes | ![](screenshots/35.png) |
 | 36 | The population of Arabic speakers. | Yes | ![](screenshots/36.png) |
