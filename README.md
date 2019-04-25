@@ -11,6 +11,7 @@ Team assessment for SET08103 Software Engineering Methods
 
 - Release [![Releases](https://img.shields.io/github/release/chriswales95/SET08103-Assessment/all.svg?style=flat-square)](https://github.com/kevin-chalmers/sem/releases)
 
+36 requirements of 36 have been implemented, which is 100%.
 
 | ID | Name | Met | Screenshot |
 | --- | --- | --- | --- |
