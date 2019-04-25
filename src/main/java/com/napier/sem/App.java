@@ -651,7 +651,7 @@ public class App {
     and using this we get a string from that report which it sends back to us (these strings are just the name, district etc).
     Once this has been completed we then return the report, however if the try statement fails then we catch this by sending back
     an error report to the user, we then return null and then that is the end of the function.*/
-    @RequestMapping("report_Fourteen")
+    @RequestMapping("report_fourteen")
     protected ArrayList<CityReport.CityReportItem> getReportFourteen(@RequestParam(value = "number") int num, @RequestParam(value = "region") String region)  // REPORT 14
     {
         try
